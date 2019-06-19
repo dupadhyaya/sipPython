@@ -22,3 +22,16 @@ len(tuple1)
 #count, index, ...
 tuple1
 tuple1.remove()  #cannot remove also
+
+
+#single value
+tuple2a = 'a'
+type(tuple2a)  #error incorrect way
+
+tuple2b = 'a',
+type(tuple2)
+
+
+#end of tuple
+#where do we used it - list type of object where no changes are required
+#list of gender, courses, categories, countries, list of values

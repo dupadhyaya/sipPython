@@ -78,3 +78,20 @@ newcar
 
 
 car(['brand','year'])
+
+
+
+#multiple keys to dictionaries
+
+student = {(1, 'dhiraj'): 'Noida', (1,'Pooja'): 'Ghaziabad'}
+type(student)
+student[(1,'dhiraj')]
+student[(2,'kounal')] = 'Delhi'
+student
+student.keys()
+student.values
+student.items()
+
+#create a dictionary of phone : first,name -> mobile no
+
+#uses : create dataframe, key-value pairs

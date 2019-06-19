@@ -96,3 +96,5 @@ fruits
 
 L6 = L1 + L5
 L6
+
+#https://learnbatta.com/blog/python-working-with-lists-51/

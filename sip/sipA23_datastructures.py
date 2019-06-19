@@ -177,3 +177,7 @@ cnt= Counter()
 for word in words: cnt[words] +=1
 
 cnt.items()
+
+
+#https://docs.python.org/3/tutorial/datastructures.html
+

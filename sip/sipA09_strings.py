@@ -31,3 +31,4 @@ nameval = input()  #look at console, type your name
 nameval
 
 
+#https://learnbatta.com/blog/python-working-with-strings-38/

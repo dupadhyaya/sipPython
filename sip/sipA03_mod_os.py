@@ -28,3 +28,4 @@ os.listdir('E:/pywork/pyProjects/')
 os.listdir('C:/Users/du/desktop/')
 
 
+#https://learnbatta.com/blog/working-with-os-module-in-python-71/

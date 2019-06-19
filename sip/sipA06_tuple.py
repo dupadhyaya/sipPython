@@ -35,3 +35,4 @@ type(tuple2)
 #end of tuple
 #where do we used it - list type of object where no changes are required
 #list of gender, courses, categories, countries, list of values
+#https://learnbatta.com/blog/python-working-with-tuple-data-type-41/

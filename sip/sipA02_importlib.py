@@ -50,7 +50,7 @@ import sys, pprint
 pprint.pprint(sys.modules)  #loaded modules
 
 #anaconda prompt
-pip install [module]
+#pip install [module]
 
 
 #Loaded Modules List
@@ -64,7 +64,7 @@ del math, random
 
 
 #removing imported module
-del [module]
+#del [module]
 
 #Checking 
 

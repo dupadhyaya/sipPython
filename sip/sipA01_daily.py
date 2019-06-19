@@ -30,7 +30,7 @@ set1 = set(['india', 'pakistan', 'england', 'australia','india'])
 set1
 type(set1)
 
-set2 = {'INDIA','pakistAN',  "INDIA"}
+set2 = {'INDIA','PAKISTAN',  "INDIA"}
 set2
 type(set2)
 print(set2)

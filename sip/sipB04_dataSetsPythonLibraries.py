@@ -6,11 +6,11 @@
 import statsmodels.api as sm
 prestige = sm.datasets.get_rdataset("Duncan", "car", cache=True).data
 print(prestige.head())
-oad_boston([return_X_y])	Load and return the boston house-prices dataset (regression).
-load_iris([return_X_y])	Load and return the iris dataset (classification).
-load_diabetes([return_X_y])	Load and return the diabetes dataset (regression).
-load_digits([n_class, return_X_y])	Load and return the digits dataset (classification).
-load_linnerud([return_X_y])	Load and return the linnerud dataset (multivariate regression).
+load_boston([return_X_y])#	Load and return the boston house-prices dataset (regression).
+load_iris([return_X_y])#	Load and return the iris dataset (classification).
+load_diabetes([return_X_y])	#Load and return the diabetes dataset (regression).
+load_digits([n_class, return_X_y])	#Load and return the digits dataset (classification).
+load_linnerud([return_X_y]) #	Load and return the linnerud dataset (multivariate regression).
 #
 import statsmodels.api as sm
 anes96 = sm.datasets.anes96

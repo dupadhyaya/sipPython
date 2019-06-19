@@ -33,6 +33,4 @@ file = easygui.fileopenbox()
 file
 #not working
 #df3 = pd.read_csv(file = easygui.fileopenbox())
-
-
 #https://www.shanelynn.ie/python-pandas-read_csv-load-data-from-csv-files/

@@ -28,3 +28,5 @@ df1.pivot_table(values= ['java','dbms'], index=['gender'], columns=['batch','bra
 #df.pt (values, index, columns)
 df1.pivot_table(index=['branch'], columns=['gender','admyr'],  aggfunc ={'java':np.mean,'vlsi':min})
 
+#more practise
+#http://www.datasciencemadesimple.com/create-pivot-table-pandas-python/

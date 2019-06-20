@@ -2,9 +2,6 @@
 #-----------------------------
 #%%
 
-#%%
-
-
 import matplotlib.pyplot as plt
 import numpy as np
 data = np.arange(3000).reshape((100,30))

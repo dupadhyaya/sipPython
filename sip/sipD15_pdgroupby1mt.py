@@ -126,7 +126,7 @@ group4.describe()
 group4.count() #size better
 
 #other functions
-mean(), sum(), size(), count(), std(), var(), sem(), describe(), first(), last(), nth(), min(), max()
+#mean(), sum(), size(), count(), std(), var(), sem(), describe(), first(), last(), nth(), min(), max()
 
 #aggregating multiple functions
 group4.groups 

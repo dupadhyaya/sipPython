@@ -11,6 +11,9 @@ import numpy as np
 df2 = pd.read_csv('data\mtcars.csv')
 df2.head()
 df2.columns
+df2.am
+df2[df2['am']== 0]['mpg'].min()
+df2.groupby("am").agg({ "mpg" : "min" })
 
 #groupby
 

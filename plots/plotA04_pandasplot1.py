@@ -8,7 +8,6 @@ df = pd.DataFrame(np.random.rand(10, 2), columns=['Col1', 'Col2'])
 df
 df['X'] = pd.Series(['A', 'A', 'A', 'A', 'A', 'B', 'B', 'B', 'B', 'B'])
 bp = df.boxplot(by='X')
-
 #
 df = pd.DataFrame(np.random.rand(10, 3), columns=['Col1', 'Col2', 'Col3'])
 df

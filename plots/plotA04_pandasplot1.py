@@ -2,7 +2,7 @@
 #
 #-----------------------------
 #%
-stratified boxplot using the by keyword argument to create groupings.
+#stratified boxplot using the by keyword argument to create groupings.
 import pandas as pd
 df = pd.DataFrame(np.random.rand(10, 2), columns=['Col1', 'Col2'])
 df

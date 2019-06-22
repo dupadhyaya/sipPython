@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"Created on Mon Jun 10 17:53:20 2019 : dhiraj@sony
+#Created on Mon Jun 10 17:53:20 2019 : dhiraj@sony
 
 #Download tweets from twitter
 import tweepy
@@ -18,7 +18,7 @@ auth.set_access_token(AccessToken, AccessTokenSecret)
 api = tweepy.API(auth, wait_on_rate_limit=True)
 
 #update your status 
-api.update_status("Using Python for downloading Tweets")
+#api.update_status("Using Python for downloading Tweets")
 
 #open / Create a file
 csvFile = open('du.csv','w')
@@ -34,9 +34,9 @@ for tweet in tweepy.Cursor(api.search, q="#unitedAirlines", count=100, lang="en"
     print(tweet.created_at, tweet.text)
     csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
                  
-csvFile = open('icc.csv','a')
+csvFile = open('icc.csv','w')
 csvWriter = csv.writer(csvFile)
-for tweet in tweepy.Cursor(api.search, q="#ICC", count=100, lang="en", since = "2019-01-01").items():
+for tweet in tweepy.Cursor(api.search, q="#ICC", count=100, lang="en", since = "2019-06-22").items():
     print(tweet.created_at, tweet.text)
     csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
 

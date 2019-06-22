@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 #Simple Plots using Pandas library only
 #-----------------------------
-#%
-
 import pandas as pd
 import numpy as np
 
-#numpy does not have plot; pandas has
+#numpy
+np1 = np.array([1,5,6])
+np1
+hist = np.histogram(np1)
+
+#numpy plot; pandas plor
 studentcount = pd.Series([30, 25, 37])
 studentcount.plot(kind='barh')
-#here plot is method in pandas : no matplotlib used here
+studentcount.plot(kind='bar')
 
+#here plot is method in pandas : no matplotlib used here
 #Load Inbuilt Datasets
 import statsmodels.api as sm
 #https://vincentarelbundock.github.io/Rdatasets/datasets.html
@@ -18,17 +22,41 @@ mtcars = sm.datasets.get_rdataset(dataname='mtcars', package='datasets')
 mtcars.data.head()
 df = mtcars.data
 df.head()
+df
+pd.set_option('display.max_rows',32)
+df
+df.head()
+pd.set_option('display.max_columns',15)
+df.head()
+
 df.columns
 #convert relevant columns to categories
+df.dtypes
 catCols = ['cyl','gear', 'am','vs','carb']
 df[catCols] = df[catCols].astype('category')
+df.dtypes
+df.describe()   #describes all numeric cols
+df.describe(include='category')  #descibe cat coln
+df.describe(include='all')  #describe all
+#print(list(df.dtypes), end=' ')
 #use plot in pandas
+
+#access column
+df.mpg #one col
+df['mpg']  #one col
+df[['mpg','wt']]   #multiple col
+df[catCols]
+# row
+df.iloc[1]  #first row
+df.head(2)
+df.loc['Mazda RX4']
+#row and col
 df.mpg.plot()  #line
 df.cyl.plot()  #line
+df.cyl.plot(kind='bar')  #line #error because no total
+df.cyl.value_counts()
 df.cyl.value_counts().plot(kind='bar')
-
 df.mpg.plot(kind='hist')
-
 #other plots
 #‘line’ : line plot (default)
 #‘bar’ : vertical bar plot
@@ -49,10 +77,14 @@ df.cyl.value_counts().plot.bar()
 df.cyl.value_counts().plot(kind='bar', color='y')
 df.gear.value_counts().plot.barh()
 df.gear.value_counts().plot(kind='barh', color='green')
-
+df.gear.value_counts()
 df.groupby('gear').groups #which car in which group
 df.groupby('gear').size()
 df.groupby('gear').size().plot.bar()
+df.groupby('gear').size().plot.bar(colormap='Paired')
+df.groupby('gear').size().plot.bar(color=['r','g','y'])
+df.groupby('gear').size().plot.bar(color=['r','g','y'])
+
 df.groupby('gear').size().plot(kind='barh')
 df.groupby(['gear','cyl']).size()
 df.groupby(['gear','cyl']).count()['am']  #not very simple 

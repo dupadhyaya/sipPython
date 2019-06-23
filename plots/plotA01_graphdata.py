@@ -30,6 +30,10 @@ from pydataset import data
 titanic = data('titanic')
 titanic.head()
 
+#mtcars
+from pydataset import data
+mtcars = data('mtcars')
+mtcars.head()
 
 #sklearn
 from sklearn import datasets

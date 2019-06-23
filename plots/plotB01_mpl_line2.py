@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Dec 23 12:22:02 2017 by Dhiraj Upadhyaya
-"""
 #Matplot Lib Pg 217
 import matplotlib as mpl
 import matplotlib.pyplot as plt

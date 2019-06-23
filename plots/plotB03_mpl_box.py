@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-#
-#-----------------------------
-#%
+##%
 #Boxplots
 # Boxplots are a measure of how well distributed the data in a data set is. It divides the data set into three quartiles. This graph represents the minimum, maximum, median, first quartile and third quartile in the data set. It is also useful in comparing the distribution of data across data sets by drawing boxplots for each of them.
 # # Drawing a Box Plot

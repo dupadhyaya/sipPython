@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-#-----------------------------
 #%%
 
 import matplotlib.pyplot as plt
 import numpy as np
+#100 rows, 30 columns, 0 to 3000
 data = np.arange(3000).reshape((100,30))
+data
 plt.imshow(data)
 #plt.savefig('test.png', bbox_inches='tight')
 
@@ -15,9 +16,10 @@ xs = np.linspace(0, 1, 20); ys = np.sin(xs)
 fig = plt.figure()
 axes = fig.add_subplot(1,1,1)
 axes.plot(xs, ys)
-# This should be called after all axes have been added
 fig.tight_layout()
 fig.show()
+
+# This should be called after all axes have been added
 #fig.savefig('test.png')
 
 
@@ -33,9 +35,6 @@ plt.plot(data)
 plt.subplots_adjust(left=.2, right=0.9, top=0.9, bottom=.1)
 plt.plot(data)
 plt.subplots_adjust(left=.3, right=0.8, top=0.8, bottom=.3)
-
-
-
 
 # Let's consider a basic barplot.
 import matplotlib.pyplot as plt

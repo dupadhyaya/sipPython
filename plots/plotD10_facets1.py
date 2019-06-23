@@ -2,6 +2,7 @@
 #https://seaborn.pydata.org/tutorial/axis_grids.html
 #-----------------------------
 #%
+
 import seaborn as sns
 import matplotlib.pyplot as plt
 sns.set(style="ticks")
@@ -24,27 +25,27 @@ g.add_legend();
 g = sns.FacetGrid(tips, row="smoker", col="time", margin_titles=True)
 g.map(sns.regplot, "size", "total_bill", color=".3", fit_reg=False, x_jitter=.1);
 
-#
+# Barplot
 g = sns.FacetGrid(tips, col="day", height=4, aspect=.5)
 g.map(sns.barplot, "sex", "total_bill");
 
-#
+# Dist Plot
 ordered_days = tips.day.value_counts().index
 g = sns.FacetGrid(tips, row="day", row_order=ordered_days, height=1.7, aspect=4,)
 g.map(sns.distplot, "total_bill", hist=False, rug=True);
 
-#
+# scatter
 pal = dict(Lunch="seagreen", Dinner="gray")
 g = sns.FacetGrid(tips, hue="time", palette=pal, height=5)
 g.map(plt.scatter, "total_bill", "tip", s=50, alpha=.7, linewidth=.5, edgecolor="white")
 g.add_legend();
 
-#
+# Scatter
 g = sns.FacetGrid(tips, hue="sex", palette="Set1", height=5, hue_kws={"marker": ["^", "v"]})
 g.map(plt.scatter, "total_bill", "tip", s=100, linewidth=.5, edgecolor="white")
 g.add_legend();
 
-#
+# Point Plot
 attend = sns.load_dataset("attention").query("subject <= 12")
 g = sns.FacetGrid(attend, col="subject", col_wrap=4, height=2, ylim=(0, 10))
 g.map(sns.pointplot, "solutions", "score", color=".3", ci=None);
@@ -56,14 +57,14 @@ g.set_axis_labels("Total bill (US Dollars)", "Tip");
 g.set(xticks=[10, 30, 50], yticks=[2, 6, 10]);
 g.fig.subplots_adjust(wspace=.02, hspace=.02);
 
-#
+# Scatter
 g = sns.FacetGrid(tips, col="smoker", margin_titles=True, height=4)
 g.map(plt.scatter, "total_bill", "tip", color="#338844", edgecolor="white", s=50, lw=1)
 for ax in g.axes.flat:
     ax.plot((0, 50), (0, .2 * 50), c=".2", ls="--")
 g.set(xlim=(0, 60), ylim=(0, 14));
 
-#
+# quantile
 from scipy import stats
 def quantile_plot(x, **kwargs):
     qntls, xr = stats.probplot(x, fit=False)
@@ -72,7 +73,7 @@ def quantile_plot(x, **kwargs):
 g = sns.FacetGrid(tips, col="sex", height=4)
 g.map(quantile_plot, "total_bill");
 
-#
+# qqplot
 def qqplot(x, y, **kwargs):
     _, xr = stats.probplot(x, fit=False)
     _, yr = stats.probplot(y, fit=False)
@@ -81,7 +82,7 @@ def qqplot(x, y, **kwargs):
 g = sns.FacetGrid(tips, col="smoker", height=4)
 g.map(qqplot, "total_bill", "tip");
 
-#
+#qq plot
 g = sns.FacetGrid(tips, hue="time", col="sex", height=4)
 g.map(qqplot, "total_bill", "tip")
 g.add_legend();

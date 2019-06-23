@@ -31,3 +31,14 @@ plt.plot(x, np.sin(x))
 #Method-3 : combined
 plt.plot(x, np.sin(x))
 plt.plot(x, np.cos(x))
+
+
+#Adjusting Axes Limits
+
+
+#Changing Color of lines
+
+#Axis Labels
+
+
+#Legend

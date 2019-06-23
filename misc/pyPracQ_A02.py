@@ -35,7 +35,17 @@ a=9.6 ; b=2 ; a//b
 #
 a = True; b = False ;c = True
 a or b and c
+A=True
+B=False
+C=True
+A or B and C
 
+#
+type(set())
+type({})
+#
+L=['a','b','c','d']
+print("".join(L) )
 #
 abc = 1,000,000;
 a b c = 1000 2000 3000;

@@ -149,16 +149,14 @@ right
 #Ufuncs
 x=np.arange(5)
 x
+x + 5
 #using functions of np
 np.add(x,5)  #add 5 to values
 np.multiply(x,10)  #multiply values by 10
-
 y=np.empty(5)
-y  #almost zero
+y  #almost zero/ intialisation o f array
 np.multiply(x,5, out=y )  
 y  #multiply x by 5 and save it in y
-
-
 #%%
 #more np methods
 x=np.random.randint(10,100, size=(3,6))
@@ -183,17 +181,17 @@ max([1,2,3])  #this will work
 np.min(x) #min
 
 #%%  More Functions
-x=np.random.randint(10,100, size=20)
-x
-
+x=np.random.randint(30,50, size=200000)
+x=np.array([30,49,50,60, 49])
 np.equal(x, 49) #all values equal to 48
+np.sum(np.equal(x,49))
 np.greater(x, 40) #values greater than 40
 np.sum(np.greater(x,40))  #how many values > 40
 sum(np.greater(x,40))
 np.less(x, 50)  #values < 50
 np.greater_equal(x, 40)  #values >= 40
 x < 40 #another way T/ F
-np.sum(x < 40)  #how many values < 40
+np.sum(x < 49)  #how many values < 40
 x
 np.sum(x < 40, axis=0)  #in each col, values < 40
 
@@ -213,10 +211,22 @@ np.sum( ~((x> 3) & (x < 7)), axis=0)
 x = np.random.randint(100,size=50)
 x
 np.sort(x)
-np.argsort(x)
+np.sort(x)[::-1]
+x1 = np.sort(x)
+x1[::-1]
+#np.sort(-x) 
+np.argsort(x) #position of sorted arrays
+x[np.argsort(-x)]
 
-x = np.random.randint(10,size=10)
+#row or column major
+np.arange(1,13)
+np.arange(1,13).reshape(3,4)
+np.arange(1,13).reshape(3,4, order='C')
+np.arange(1,13).reshape(3,4, order='F')
+
+#transpose
+x=np.arange(1,13).reshape(3,4)
 x
-np.partition(x, 3)  #sort
-np.partition(x, 4)  #sort
+x.T
+#x.T.view()  #view without modifying
 

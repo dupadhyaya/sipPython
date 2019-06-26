@@ -12,7 +12,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 df = pd.DataFrame(np.random.rand(10, 5), columns=['A', 'B', 'C', 'D', 'E'])
-df
+df.head()
 #10 rows, 5 columns; continuous values
 #this through pandas plot
 df.plot.box(grid='True')
@@ -20,7 +20,7 @@ df.plot.box(grid='True')
 #matplot way
 #https://matplotlib.org/3.1.0/api/_as_gen/matplotlib.pyplot.boxplot.html
 matplotlib.pyplot.boxplot(x, notch=None, sym=None, vert=None, whis=None, positions=None, widths=None, patch_artist=None, bootstrap=None, usermedians=None, conf_intervals=None, meanline=None, showmeans=None, showcaps=None, showbox=None, showfliers=None, boxprops=None, labels=None, flierprops=None, medianprops=None, meanprops=None, capprops=None, whiskerprops=None, manage_ticks=True, autorange=False, zorder=None, *, data=None)
-
+plt.boxplot(df.A)
 # Run next 4 lines together
 fig1, ax1 = plt.subplots()
 ax1.set_title('Basic Plot')
@@ -28,6 +28,8 @@ df.columns
 ax1.boxplot(df.A)
 
 #with notch
+plt.boxplot(df.A, notch=True)
+#
 fig2, ax2 = plt.subplots()
 ax2.set_title('Box Plot with Notch')
 df.columns

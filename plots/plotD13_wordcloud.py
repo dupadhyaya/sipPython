@@ -2,7 +2,7 @@
 #Created on Mon Jun 24 17:18:55 2019 : dhiraj@sony
 
 from wordcloud import WordCloud
-
+pip install wordcloud
 # Read the whole text.
 s = 'dhiraj dhiraj upadhyaya dhiraj dhiraj noida delhi'
 text = s

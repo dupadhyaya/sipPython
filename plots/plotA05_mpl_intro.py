@@ -23,9 +23,10 @@ plt.plot(x,y)
 
 import numpy as np 
 import matplotlib.pyplot as plt 
-
+#%%%
 x = np.arange(0,10) 
 y = x ^ 2 
+x,y
 #Labeling the Axes and Title
 #run these 4 lines together
 plt.title("Graph Drawing") 

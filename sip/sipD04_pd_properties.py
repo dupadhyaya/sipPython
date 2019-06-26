@@ -114,3 +114,50 @@ df.filter(like ='g').head()
 
 df.ix[:, ~df.columns.str.contains('^m|g|c')]
 #show all columns except those beginning with m/g/c (in other word remove / drop all columns satisfying given RegEx)
+
+
+#dual condition
+df.columns
+df.loc[(df["mpg"] > 25 ) & (df["gear"]== 4)]
+
+import numpy as np
+def meanValue(x): return np.mean(x)
+def sumValue(x): return np.sum(x)
+
+df[['mpg','hp']].apply(meanValue, axis=0)
+#mean of columns ; mean of each subject marks
+df.index
+df[['mpg','hp','wt']].apply(sumValue, axis=1)
+#rowwise sum : studentwise sum of marks
+
+from scipy.stats import mode
+df.gear.value_counts()
+print(mode(df['gear']))
+mode(df['gear']).mode[0]
+
+
+#Sorting
+df_sorted = df.sort_values(['gear','mpg'], ascending=False)
+df_sorted
+df_sorted[['gear','mpg']]
+
+df_sorted2 = df.sort_values(['gear','mpg'], ascending=[False,True])
+df_sorted2[['gear','mpg']]
+
+
+#
+import matplotlib.pyplot as plt
+df.boxplot(column="mpg",by="gear")
+df.boxplot(column="mpg",by=["gear","cyl"])
+df.hist(column="mpg",by="gear",bins=30)
+
+
+#
+import pandas as pd
+data = pd.read_csv('data/mtcars.csv')
+colTypes = pd.DataFrame({'feature':['mpg','disp','hp','drat', 'wt','qsec', 'cyl','vs', 'am', 'gear','carb','carname'], 'type':['float64','float64', 'float64', 'float64','float64','float64','category', 'category', 'category', 'category','category','object']})
+colTypes
+data.columns
+colTypes
+#https://www.analyticsvidhya.com/blog/2016/01/12-pandas-techniques-python-data-manipulation/
+#conver by columnames to differnt types

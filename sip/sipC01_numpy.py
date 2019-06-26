@@ -21,12 +21,15 @@ x[0:5]  #first 5 elements
 x[0:8:2]  #first 8 elements, skip by 1
 x[10:0:-1]  #start from 10th position, reverse directions to 0th
 x
-x[1::3]  #alternate element from 2nd element
+x[1::3]  #every 3rd element from 2nd element
 
 
 #random values :
 np.random.random(size=10)  #10 numbers between 0 and 1
 np.random.randint(10, size=6)  #6 random integer numbers bet 0 and 9 (incl)
+x=np.random.randint(60,100, size=100)
+np.ptp(x)
+range(x)
 np.random.randint(10, size=(3,4)) #two Dim random int values betw 0 and 9 (incl) : 3 rows X 4 columns
 
 # save this array in x2 and filter elements
@@ -34,7 +37,7 @@ x2=np.random.randint(10, size=(3,4))
 
 x2[1,1]  #first row, first col
 x2[:2,] #upto  1st row
-x2[:1,:2]  #intersection of 1st row, upto 2 columns
+ x2[:1,:2]  #intersection of 1st row, upto 2 columns
 x2  #see it 
 x2[::2,::1]  #alternate row, all columns
 x2[::-1,::-1]  #reverse rows an columns #understand
@@ -50,33 +53,64 @@ np.size(x3)  # 3 * 4 * 5  = 60
 #more numpy
 np.random.randint(1, 10, size=10) #10 nos between 1 and 10, 1 dim
 np.random.randint(10,20, size=(3,5)) # 3Rows * 5Columns = 15 nos between 10 and 20, 2 dim
-np.random.normal(0,1,(3,3)) #3Rows * 3Columns = 9 normal distributed nos mean=0, stddev=1, 2 Dim array
-
+xn1=np.random.normal(0,1,(3,3)) #3Rows * 3Columns = 9 normal distributed nos mean=0, stddev=1, 2 Dim array
+xn1=np.random.normal(0,1,100)
+len(xn1), xn1.mean(), xn1.std()
+xn2=np.random.normal(0,1,1000000)
+len(xn2), xn2.mean(), xn2.std()
+#as sample size becomes large, they follow normal distribution
+import seaborn as sns
+sns.kdeplot(xn1)
+sns.kdeplot(xn2)
 #divide points between 10 to 15 into 9 equal spaces
 np.linspace(10,15,9)
+np.linspace(0,10,5)
+xn1.round(2)
+np.floor([1.2, 1.6])
+np.ceil([1.2, 1.6])
+np.trunc([1.2, 1.6])
+np.trunc([-1.2, -1.6])
+np.floor([-1.2, -1.6])
+np.round([1.23434, 1.654455],2)
 #fill 10 positions with empty values 0
-np.empty(10)  #almost 0
+xe= np.empty(10)  #almost 0; way of initialising; in memory data return
+xe#empty, unlike zeros, does not set the array values to zero, and may therefore be marginally faster. On the other hand, it requires the user to manually set all the values in the array, and should be used with caution.
 #identity array
 np.eye(4)
-#all zeros
+#all zeros: values already there. need to give numbers or shape
 np.zeros([10])
+np.zeros(shape=(3,5))
 #all ones
 np.ones([12])
 #all with particular value
 np.full((3,4),[3.14])
 np.full((3,4), np.pi)
-
+np.full((3,3),'Dhiraj')
 #changing shape
-np.array([1,2,3,4])
-np.array([1,2,3,4,5,6]).reshape(2,3)
+ns1=np.array([1,2,3,4])
+ns1.shape, ns1.size
+
+np.array([1,2,3,4,5,6,7]).reshape(2,3)
 x=np.array([1,2,3,4,5,6]).reshape(2,3)
 x
 #changing axis
-x[:,np.newaxis]
-x[np.newaxis,:]
-
+ns1=np.array([1,2,3,4])
+ns1a=ns1[:,np.newaxis]
+ns1a
+#ns2 = np.array([[1],[2],[3],[4],[5]])
+#ns2
+#ns2[:np.newaxis,]
 #%%
 #concatenate arrays
+x4=np.array([1,2,3,4,5,6,7])
+x4.size
+#3 x 4
+x4b=np.concatenate([x4,np.zeros(5)])
+x4c=np.concatenate([x4,np.zeros(3 * 4 - x4.size)])
+x4c
+x4b.reshape(3,4)
+
+
 x=np.array([1,2,3])
 y=np.array([4,5,6])
 x,y
@@ -89,11 +123,14 @@ y
 np.concatenate([x,y], axis=0)
 np.concatenate([x,y], axis=1)
 #vertical and horizontal stack
-np.vstack([x,y])
-np.hstack([x,y])
+np.vstack([x,y])  #axis =0, rowbind
+np.hstack([x,y])  #axis=1, colbind
 
 #split : break the array at particular position
 x=np.arange(10,19)
+x
+np.linspace(10,19,3)
+np.split(x,3)
 x1,x2,x3 = np.split(x,[3,5])  #3rd, 5th : 3 subarrays
 x1,x2,x3
 #split in multi dim array

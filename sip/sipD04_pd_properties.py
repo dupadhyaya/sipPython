@@ -155,9 +155,25 @@ df.hist(column="mpg",by="gear",bins=30)
 #
 import pandas as pd
 data = pd.read_csv('data/mtcars.csv')
-colTypes = pd.DataFrame({'feature':['mpg','disp','hp','drat', 'wt','qsec', 'cyl','vs', 'am', 'gear','carb','carname'], 'type':['float64','float64', 'float64', 'float64','float64','float64','category', 'category', 'category', 'category','category','object']})
+colTypes = pd.DataFrame({'feature':['mpg','disp','hp','drat', 'wt','qsec', 'cyl','vs', 'am', 'gear','carb','carname'], 'atype':['float64','float64', 'float64', 'float64', 'float64', 'float64', 'category', 'category', 'category', 'category','category','object']})
 colTypes
 data.columns
 colTypes
+list(colTypes.feature)
+def valueType(name):
+    return colTypes.loc[colTypes['feature'] == name, 'atype'].iloc[0]
+valueType('gear')
+
+for i in data.columns:
+    if i in list(colTypes.feature):
+        print(i, 'Yes')
+        print(i, valueType(i))
+        data[i] = data[i].astype(valueType(i))
+    else:
+        print(i, 'No')
+
+data.dtypes
+colTypes.dtypes
+colTypes.assigntype
 #https://www.analyticsvidhya.com/blog/2016/01/12-pandas-techniques-python-data-manipulation/
 #conver by columnames to differnt types

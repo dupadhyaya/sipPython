@@ -62,3 +62,36 @@ else :
 
 #shorthand if
 
+#or and and
+x=3; y=4; z=5
+if x < y and y < z:
+  print("Both conditions are True")
+
+z=2
+
+if x < y or y > z:
+  print("Both conditions are True")
+
+if (x < y) or (y > z) :
+  print("Either conditions are True")
+
+if ((x < y) or (y > z)) and (x > 10):
+    print("Both conditions are True")
+else:
+    print("Conditions are not True")
+
+if ((x < y) or (y > z)) or (x > 10):
+    print("Either conditions are True")
+else:
+    print("Conditions are not True")
+
+(x < y) or (y > z) and (x > 10)
+x<y, x>z, x<10
+True or False and True  #left to right
+
+(x > 10) and (x < y) and (y > z)  
+
+if (x < y) or (y > z) and (x > 10):
+    print("Either conditions are True")
+else:
+    print("Conditions are not True")

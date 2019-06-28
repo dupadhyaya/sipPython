@@ -1,49 +1,74 @@
 # -*- coding: utf-8 -*-
 #Numpy - which stands for Numerical Python, is a library consisting of multidimensional array objects and a collection of routines for processing those arrays. Using NumPy, mathematical and logical operations on arrays can be performed
+list1 = [1,2 , 42.5 , 'a', 'Dhiraj', True]
+list1
+list1[0].upper()
+list1[4].upper()
+#extra bit required in the list for storage. 
+
+import numpy
+numpy.arange(10)
 
 #library for numpy : default as part of anaconda
 import numpy as np
 #np is alias now can be used for various functions 
-
 #Seq : start at 0, end at 10-1
-np.arange(10)
+np.arange(10)  #comment
 np.arange(0,10)
+np.arange(1,11)
 
 #start at 10, end at 20-1
 x=np.arange(10,20)
 x
-
+x[2]
+x[-1]
+x[-2]
 #filter
 x[0]  #first value of an array
 x[2], x[5], x[-1]  #multiple values seperated by comma
 #x[-1]  #last element
 x[0:5]  #first 5 elements
-x[0:8:2]  #first 8 elements, skip by 1
-x[10:0:-1]  #start from 10th position, reverse directions to 0th
+x[::2]
+x[start:end:step]
+x[3::2]
+x[0:6:2]  #from first 6 elements, skip by 2
+x[10:0:-2]  #start from 10th position, reverse directions to 0th
 x
 x[1::3]  #every 3rd element from 2nd element
 
-
 #random values :
+np.random.random()
 np.random.random(size=10)  #10 numbers between 0 and 1
-np.random.randint(10, size=6)  #6 random integer numbers bet 0 and 9 (incl)
+np.random.randint(10, size=9)  #6 random integer numbers bet 0 and 9 (incl)
 x=np.random.randint(60,100, size=100)
+x
+min(x), max(x)
+max(x) - min(x)
 np.ptp(x)
-range(x)
+#range(x)
+#duplicates
+import random
+random.sample(range(20), 10)
+random.sample(range(20), 50, True)
+random.choice(range(20), 50)
+np.random.choice([1,2,3], size=20, replace=True, p=[.7,.2,.1])
 np.random.randint(10, size=(3,4)) #two Dim random int values betw 0 and 9 (incl) : 3 rows X 4 columns
 
 # save this array in x2 and filter elements
 x2=np.random.randint(10, size=(3,4))
-
+x2
+x2.shape
+x2[0,0]
 x2[1,1]  #first row, first col
-x2[:2,] #upto  1st row
- x2[:1,:2]  #intersection of 1st row, upto 2 columns
+x2[:2,] #upto  1st row all col
+x2[1:,]
+x2[:1,:2]  #intersection of 1st row, upto 2 columns
 x2  #see it 
-x2[::2,::1]  #alternate row, all columns
+x2[::2,::2]  #alternate row, all columns
 x2[::-1,::-1]  #reverse rows an columns #understand
 
 #3 dim
-x3=np.random.randint(10, size=(3,4,5))
+x3=np.random.randint(10, size=(3,4,5)) #matrix,rows, cols
 x3
 #check features
 np.ndim(x3)  # 3 Dim
@@ -53,22 +78,36 @@ np.size(x3)  # 3 * 4 * 5  = 60
 #more numpy
 np.random.randint(1, 10, size=10) #10 nos between 1 and 10, 1 dim
 np.random.randint(10,20, size=(3,5)) # 3Rows * 5Columns = 15 nos between 10 and 20, 2 dim
-xn1=np.random.normal(0,1,(3,3)) #3Rows * 3Columns = 9 normal distributed nos mean=0, stddev=1, 2 Dim array
+#normal distribution
+np.random.normal?
+xn1=np.random.normal(loc=0,scale=1,size=(3,3))
+#3Rows * 3Columns = 9 normal distributed nos mean=0, stddev=1, 2 Dim array
+xn1
+np.mean(xn1)
+np.std(xn1)
+#not close : sample is small ie 9
+
 xn1=np.random.normal(0,1,100)
 len(xn1), xn1.mean(), xn1.std()
-xn2=np.random.normal(0,1,1000000)
-len(xn2), xn2.mean(), xn2.std()
+xn2=np.random.normal(loc=0,scale=1,size=1000000)
+len(xn2)
+np.mean(xn2), xn2.mean()  #two methods
+xn2.std()
+
 #as sample size becomes large, they follow normal distribution
 import seaborn as sns
 sns.kdeplot(xn1)
 sns.kdeplot(xn2)
 #divide points between 10 to 15 into 9 equal spaces
-np.linspace(10,15,9)
 np.linspace(0,10,5)
+np.linspace(10,15,9)
+np.diff(np.linspace(10,15,9))
+xn1
 xn1.round(2)
 np.floor([1.2, 1.6])
 np.ceil([1.2, 1.6])
 np.trunc([1.2, 1.6])
+np.round([1.2, 1.6])
 np.trunc([-1.2, -1.6])
 np.floor([-1.2, -1.6])
 np.round([1.23434, 1.654455],2)
@@ -85,7 +124,25 @@ np.ones([12])
 #all with particular value
 np.full((3,4),[3.14])
 np.full((3,4), np.pi)
-np.full((3,3),'Dhiraj')
+np.full((1,2),['Dhiraj-5','arjun-6'])
+#char add
+fname = np.char.array(['Dhiraj', 'Kounal'])
+fname
+lname = np.char.array(['Upadhyaya', 'Gupta'])
+lname
+fname + lname
+
+#
+course = np.array(['MBA','BBA','PHD'], dtype=np.object)
+course + course
+#
+sname = np.array(['student'])
+sname
+slist = np.array([1,2,3,4,5])
+sname.core.defchararray.join('-', np.array([1,2,3]))
+np.core.defchararray.add(sname, slist.astype(str))
+["student" + str(i) for i in range(1,11)]
+
 #changing shape
 ns1=np.array([1,2,3,4])
 ns1.shape, ns1.size

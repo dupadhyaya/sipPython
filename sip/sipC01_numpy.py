@@ -17,9 +17,14 @@ np.arange(10)  #comment
 np.arange(0,10)
 np.arange(1,11)
 
+#
+x=np.array([1,4,3], dtype='int32')
+x.dtype
+
 #start at 10, end at 20-1
 x=np.arange(10,20)
 x
+x.dtype
 x[2]
 x[-1]
 x[-2]
@@ -287,3 +292,30 @@ x
 x.T
 #x.T.view()  #view without modifying
 
+
+
+#shuffle
+x = np.arange(1,16)
+x
+np.random.shuffle(x)  #inplace
+x
+np.random.choice(x,15)
+x1=np.sort(x)
+x1[::-1]
+np.sort(x)[::-1]
+x[::-1].sort()
+x
+#2 dim array
+x2 = np.arange(0,10)
+x2
+np.random.shuffle(x2)
+x2a = x2.reshape(2,5)
+x2a
+np.random.shuffle(x2a)
+x2a
+x2a.shape
+x2a.ndim
+np.fliplr(x2a)  #flip left/ right
+np.flipud(x2a)
+np.rot90(x2a) #rotate 90
+np.fliplr?

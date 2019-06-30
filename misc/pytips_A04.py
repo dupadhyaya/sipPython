@@ -50,3 +50,12 @@ str(res)
 # using map() + lambda + split()  # Split Sublist Strings 
 res = list(map(lambda sub: sub[0].split(' '), test_list)) 
 str(res)
+
+
+
+
+#links
+https://towardsdatascience.com/23-great-pandas-codes-for-data-scientists-cca5ed9d8a38
+
+#https://www.dataquest.io/blog/python-vs-r/
+#https://shiring.github.io/r_vs_python/2017/01/22/R_vs_Py_post

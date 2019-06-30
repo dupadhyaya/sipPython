@@ -105,7 +105,23 @@ dataGgcc.sort_index(level=[2,0])  #carb then gear
 #DataFrame.sort_index(axis=0, level=None, ascending=True, inplace=False, kind=’quicksort’, na_position=’last’, sort_remaining=True, by=None)
 
 #Mutiple Aggregations
-#group
+#group on different columns
+data2.head()
+data2.groupby(['gear', 'carb']).agg({'hp':np.sum, 'mpg':np.mean})
+data2Ggchm = data2.groupby(['gear', 'carb']).agg({'hp':np.sum, 'mpg':np.mean})
+data2Ggchm.head()
+data2Ggchm.loc[3]  #1st index is Gear; 3rd Gear
+data2Ggchm.loc[3,2]  #gear3, Carb2 : hp and mileage
+data2Ggchm.loc[(3,2)]
+data2Ggchm.loc[(3,2), :]
+data2Ggchm.loc[(3,2), 'hp']
+data2Ggchm.loc[(3,2), :'hp']
+
+data2Ggchm
+data2Ggchm.loc[([3,4], 2), ['hp','mpg']]  #Gear 3 and gear 4 with cyl2
+data2Ggchm.loc[(5,[2,8]), ['hp','mpg']]  #Gear5, Carb2, carb8
+#note round and square bracket
+
 
 #Pivot Table
 data1

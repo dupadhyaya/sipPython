@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #Created on Mon Jun 10 17:53:20 2019 : dhiraj@sony
-
+#write to twitter : developer-accounts@twitter.com
 #Download tweets from twitter
 import tweepy
 import csv

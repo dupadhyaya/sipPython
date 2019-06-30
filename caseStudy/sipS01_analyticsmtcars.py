@@ -8,7 +8,7 @@ url = "https://raw.githubusercontent.com/dupadhyaya/hheanalytics/master/data/mtc
 #mtcars is inbuilt data in R, exported csv, pushed to git and now importing it here
 
 #load libraries
-import pandas as pd  #dataframe
+#import pandas as pd  #dataframe
 import numpy as np # arrays type
 
 #read from online csv

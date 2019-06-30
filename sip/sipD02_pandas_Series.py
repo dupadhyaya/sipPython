@@ -14,17 +14,16 @@ np1 = np.array([1,3,5,10,12])
 np1
 np1.index  #no index - error
 np1[0:3] #index are position values index square bracket
-
 #panda series
-
+np1[[1,4]]
 ps1 = pd.Series([1,2,4,8,11])
 ps1
 #see the shape of output; columnar with default index
 ps1[0:3]  #this also works
+np.arange(0,5,1)
 ps1.index  #this also
 #here index is in series, but user defined index values can be given
-
-ps2 = pd.Series([1,4,2,5,6], index=['bba','mba','phd','a','dhiraj'], dtype='int32')
+ps2 = pd.Series([1,4,2,5,6], index=['bba', 'mba','phd', 'a','dhiraj' ], dtype='int32')
 ps2
 ps2[0:3]  #this still works even though index names have been given
 ps2['bba']

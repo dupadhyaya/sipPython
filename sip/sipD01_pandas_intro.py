@@ -1,14 +1,9 @@
 #Panda Introduction and Topics
 #-----------------------------
-#%
-
-#library
-
-import panda as pd
-
+#%library
+import pandas as pd
 print(dir(pd), end =', ')
 len(dir(pd))
-
 #initial
 #help
 pd.read_csv?

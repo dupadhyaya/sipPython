@@ -1,40 +1,60 @@
 #Muli Index
 #-----------------------------
-#%
+#% Multindex in Pandas DF
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from pydataset import data
+data('iris')
+data('titanic')
+#https://github.com/iamaziz/PyDataset/blob/master/examples/sample-datasets.ipynb
 mtcars = data('mtcars')
 mtcars.head()
-mtcars.to_csv('data/mcarsdataset.csv')
-
+#mtcars.to_csv('data/mcarsdataset.csv')
 data1 = mtcars
-
 #describe data
-data1.columns
-data1.values
+data1.columns  #col names
+data1.values# values of DF
 data1.index
 data1.dtypes
-data1[['am','vs','cyl','gear','carb']] = data1[['am','vs','cyl','gear','carb']].astype('category')
+data1[['am','vs','cyl','gear','carb']] = data1[['am','vs', 'cyl','gear', 'carb']].astype('category')
+#data1[['am','vs', 'cyl','gear', 'carb']].astype('category', inplace=False)
 data1.dtypes
-
+data1.iloc[0:3,0:4]
 #reset the index : index to column
 data2 = data1.reset_index()
+data2.iloc[0:3,0:4]
+
 data2.columns
 data2.rename({'index':'carname'},inplace=True, axis='columns')
 #rename index column to carname : old to new
 data2.head()
-#create a new index
+data2.columns
+ #create a new index
 #DataFrame.set_index(keys, drop=True, append=False, inplace=False, verify_integrity=False)
 data2.columns
 #to_clipboard(excel=True, sep=None, **kwargs)[source]
 #cyl vs	am gear	carb
 data3cyl = data2.set_index('cyl')
 data3cyl.head() 
-data3cyl.head().to_clipboard()
+data2.cyl.value_counts()
+data3cyl.loc[6,]
+data3cyl.loc[4,]
+data3cyl.loc[[4,6],]
+
+data3cyl.iloc[4,]
+
+#data3cyl.head().to_clipboard()
+data3cyl.head()
 data3cyl.columns
-data3cyl.set_index('gear', drop=False).head()
+pd.set_option('display.max_columns',13)
+data2.head()
+data3 = data2.set_index('gear', drop=True).head()
+data3.head()
+data3.reset_index().set_index('cyl').head()
+data3cyl.set_index('gear', append=True).set_index('am', append=True)
+
+
 data3cyl.set_index('gear', drop=False).head().to_clipboard()
 data3cyl.set_index('vs', drop=False).head()
 data3cyl.set_index('vs', drop=False).head().to_clipboard()
@@ -45,20 +65,22 @@ data3cyl.set_index('am', drop=False).head().to_clipboard()
 #append: It appends the column to the existing index column if True.
 #inplace: It makes the changes in the DataFrame if True.
 #verify_integrity: It checks the new index column for duplicates if True.
-
+#%%%
 #query on index columns
 data2.columns
 data2.head()
 
-#groupby 
+#groupby : Mean mpg by gear
 dataGg = data2.groupby(['gear']).mpg.mean()
 #dataGg.to_clipboard()
 dataGg
 dataGg.index
+type(dataGg)
+dataGg[3]
 #groupby 2 columns
 dataGga = data2.groupby(['gear','am']).mpg.mean()
 dataGga.index
-dataGga.to_clipboard()
+#dataGga.to_clipboard()
 dataGga
 
 #groupby 3 columns

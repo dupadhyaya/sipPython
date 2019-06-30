@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 #
 #-----------------------------
-#%
+#%https://jakevdp.github.io/PythonDataScienceHandbook/03.05-hierarchical-indexing.html
+
 
 midx = pd.MultiIndex(levels=[['Delhi', 'Chandigarh'], ['AIIT', 'ABS', 'ALS']],codes=[[0,0,1,1,1], [0, 1, 0, 1, 2]])
 midx

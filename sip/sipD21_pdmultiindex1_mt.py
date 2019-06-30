@@ -44,6 +44,7 @@ df2 = mtcars.reset_index(drop=False)
 #carnames move as columns, integer indexing
 df2.head()
 df2.columns
+df2.rename({'index':'carnames'}, inplace=True)
 df2.dtypes
 df2.index # 0 to 32 with gap of 1 : 0 to 31
 
@@ -68,6 +69,7 @@ df3c.index
 
 #%%%
 #grouping using Index
+df2.head()
 df2.groupby(['cyl','am'])['wt'].mean()
 
 df3a.groupby(['cyl','am'])['wt'].mean()
@@ -93,3 +95,17 @@ df
 df.reset_index()
 df.drop(columns='mpg')
 df2.drop(axis=1, index=1)
+
+
+#aggr wrt index 
+df2.head()
+df2.rename({'index':'cars'}, axis='columns', inplace=True)
+df2.head()
+
+df2index1 = df2.set_index(['gear','cyl'])
+df2index1
+df2index1.mpg.mean(level='gear')
+df2index1.mpg.mean(level=[0,1])
+df2index1.mpg.mean(level=[1,0])
+
+data_mean.mean(axis=1, level='type')

@@ -34,21 +34,23 @@ df2.cyl.value_counts()
 
 df2.groupby('cyl').aggregate({'mpg':'mean'})
 #see column headings
-df2.groupby('cyl', as_index=True).aggregate({'mpg':'mean'})
+df2.groupby('cyl', as_index=True).aggregate({'mpg':'mean'})  #index - cyl
+df2.groupby('cyl', as_index=False).aggregate({'mpg':'mean'})  #no index
 
 #sort
-df2.groupby(['cyl','gear'], sort=False, as_index=True).aggregate({'mpg':'mean'})
-df2.groupby(['cyl','gear'], sort=True, as_index=True).aggregate({'mpg':'mean'})
+df2.groupby(['cyl','gear'], sort=False, as_index= True).aggregate({'mpg' :'mean'})
+df2.groupby(['cyl','gear'], sort=True, as_index= True).aggregate({'mpg' :'mean'})
 
 #level 
 df2.groupby(level=0)['mpg'].mean()  #first level of index (here only 1)
-df2.groupby(level=1)['mpg'].mean()  #error
+df2.groupby(level=1)['mpg'].mean()  #error as there is no index
 
 
 
 #axis
 df2.groupby(['cyl','gear'], axis=0, sort=True).aggregate({'mpg':'mean'})
-df2.groupby(['cyl','gear'], axis=1, sort=True).aggregate({'mpg':'mean'})  #error
+#sort by row index
+df2.groupby(['cyl','gear'], axis=1, sort=True).aggregate({'mpg':'mean'})  #error : cannot index cols
 df2.groupby(['cyl','gear'], axis=1, sort=True)['mpg'].mean()  #error
 
 #observed
@@ -87,7 +89,8 @@ df2b.groupby(level='gear').size()
 df2b.groupby(level=1).size()
 df2b.groupby(level='cyl').size()
 
-df2b.groupby(level=[0,1]).size()
+df2b
+df2b.groupby(level=[0,1]).size() #gear-level0, cyl-Level1
 df2b.groupby(level=['gear','cyl']).size()
 
 df2b.groupby(level=[1,0]).size()
@@ -197,3 +200,7 @@ def get_status(group):
 get_status(group4)
 
 group4.apply(get_stats)
+
+
+
+#end----------------------------

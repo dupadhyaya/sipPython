@@ -66,9 +66,33 @@ students3.swaplevel(0, 1, axis=0)
 #https://pandas.pydata.org/pandas-docs/stable/user_guide/advanced.html
 
 
+#%%%
 
+import pandas as pd
+cities = ["Vienna", "Vienna", "Vienna",  "Hamburg", "Hamburg", "Hamburg",   "Berlin", "Berlin", "Berlin", "Zürich", "Zürich", "Zürich"]
 
+index = [cities, ["country", "area", "population",                 "country", "area", "population",    "country", "area", "population", "country", "area", "population"]]
 
+print(index)
+data = ["Austria", 414.60,    1805681,   "Germany", 755.00,    1760433,      "Germany", 891.85,    3562166,   "Switzerland", 87.88, 378884]
+city_series = pd.Series(data, index=index)
+print(city_series)
+city_series.reset_index()
+
+city_series["Vienna"]["area"]
+city_series["Vienna", "area"]
+city_series["Hamburg",:]
+city_series["Berlin":"Vienna"]  #index not sorted
+city_series = city_series.sort_index()
+city_series
+city_series["Berlin":"Vienna"]
+city_series[:, "area"]
+
+#swapping
+city_series = city_series.swaplevel()
+city_series
+city_series.sort_index(inplace=True)
+city_series
 
 
 """

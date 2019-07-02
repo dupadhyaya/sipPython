@@ -53,3 +53,10 @@ strdate1 = dt.strftime(date1, format="%d-%B-%Y")
 strdate1
 type(strdate1)  #string
 
+#The strftime() method is defined under classes date, datetime and time. The method creates a formatted string from a given date, datetime or time object.
+%Y - year [0001,..., 2018, 2019,..., 9999]
+%m - month [01, 02, ..., 11, 12]
+%d - day [01, 02, ..., 30, 31]
+%H - hour [00, 01, ..., 22, 23
+%M - month [00, 01, ..., 58, 59]
+%S - second [00, 01, ..., 58, 59]

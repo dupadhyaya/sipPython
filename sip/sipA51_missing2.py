@@ -60,6 +60,8 @@ df2 #these values of 1000 and 2000 are not correct
 
 df2.replace({1000:10,2000:60})
 
+assert pd.isnull(df2).all().all()
+
 #%%
 df
 df.describe()

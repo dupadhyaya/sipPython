@@ -71,6 +71,22 @@ student2a.sort_index(level=1)  #first year then course
 student2a.sort_index(level=[1,0], ascending=[True, False])
 student2a.sort_index(level=['admyr','course'], ascending=[True, False])
 #name and level works
+student2a
+student2a.index
+#using slice
+student2a.loc[:,['rollno','gender']]
+student2a.sort_index(level=[0,1],inplace=True)
+student2a.loc[(slice('BBA'),slice(None)),['rollno','gender']]  #data should be sorted
+student2a.loc[(slice('BBA'),slice(2010)),['rollno','gender']] #no student
+student2a.loc[(slice('BBA'),slice(2012)),['rollno','gender']]
+student2a.loc[(slice('BBA','MBA'),slice(2012)),['rollno','gender']] #BBA to MBA
+student2a.loc[(slice('BBA','BTECH'),slice(2012)),['rollno','gender']] #this will ok
+student2a.loc[(slice(None),slice(2012)),['rollno','gender']] #upto 2012
+student2a.loc[(slice(None),slice(2012,2012)),['rollno','gender']] # only 2012
+
+#student2a.loc[(slice('BBA','MBA'),slice('2012')),:]
+
+
 
 #index in columns and rows - student3
 
@@ -91,11 +107,8 @@ pd.MultiIndex.from_frame(dfcol)
 newDF = pd.DataFrame(student1.values, columns= pd.MultiIndex.from_frame(dfcol))
 newDF
 #now we can correctly create index
-
+newDF
 #it is working only on course
+newDF.loc[slice(1:5),]
 
-
-student2a = student2.set_index(['course','admyr'])
-student2a
-student2a.to_clipboard()
 

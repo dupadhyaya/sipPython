@@ -66,4 +66,22 @@ print("c =", c)
 d = time(11, 34, 56, 234566)
 print("d =", d)
 
+
+#Replace a portion of date
+d = dt(2019, 7, 4,15,30)
+d
+d1=d.replace(day=28)
+d1
+#tuple : date time value
+
+d.timetuple()
+d.weekday()
+d.isoweekday()
+d.isocalendar()
+d.ctime()
+d.isoformat()
+#From 0 date
+d3 = dt.fromordinal(730920) # 730920th day after 1. 1. 0001
+d3
+
 #https://www.programiz.com/python-programming/datetime

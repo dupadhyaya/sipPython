@@ -2,6 +2,7 @@
 #-----------------------------
 
 #timedelta - Subtracting dates produces a timedelta, and a timedelta can be added or subtracted from a date to produce another date. The internal values for a timedelta are stored in days, seconds, and microseconds.
+#https://docs.python.org/2/library/datetime.html#timedelta-objects
 
 import datetime
 

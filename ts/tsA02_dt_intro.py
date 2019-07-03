@@ -1,6 +1,7 @@
 #Data Time - Introduction
 
 import datetime
+#https://docs.python.org/2/library/datetime.html#available-types
 
 #current date and time
 x1 = datetime.datetime.now()
@@ -14,6 +15,9 @@ print(x1.strftime("%A"))
 
 #particular Date
 x2 = datetime.datetime(1947,8,15)
+#class datetime.datetime(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])
+#https://docs.python.org/2/library/datetime.html#datetime-objects
+
 print(x2.year)
 print(x2)
 print(x2.strftime("%B %A"))
@@ -25,6 +29,7 @@ today
 #parts of the data : Year, Month, Day, HH, MM, SEC, 
 #Formatted Date
 dt.strftime(today, '%d-%m-%y')
+#https://docs.python.org/2/library/datetime.html#date-objects
 
 #Other formating codes
 #%a, %A, %w, %d, %b, %B, %m, %y, %Y, %H, %H, %i, %p, %p, %M, %S
@@ -54,6 +59,9 @@ strdate1
 type(strdate1)  #string
 
 #The strftime() method is defined under classes date, datetime and time. The method creates a formatted string from a given date, datetime or time object.
+#See here
+#https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior
+
 %Y - year [0001,..., 2018, 2019,..., 9999]
 %m - month [01, 02, ..., 11, 12]
 %d - day [01, 02, ..., 30, 31]

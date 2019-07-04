@@ -1,7 +1,6 @@
 #Date Time - Operations & Arithmetic
 #-----------------------------
 #%
-
 from datetime import datetime as dt
 
 #to date from integer values
@@ -13,15 +12,16 @@ equinoxDate
 
 #%%
 
-d1 = dt(2019,6,15)
+d1 = dt(2010,6,10)
 d2 = dt(2019,7,28)
 d2 + d1 #error
-d2 - d1  #number of days
-
-
+diff=d2 - d1  #number of days
+diff
+diff/365  #this yrs
 #%%
 d3 = dt(2019, 7, 4, 15, 30, 59, 10)
 d3
+
 d3.hour   #hour
 d3.minute #minute
 d3.second  #second
@@ -70,7 +70,7 @@ print("d =", d)
 #Replace a portion of date
 d = dt(2019, 7, 4,15,30)
 d
-d1=d.replace(day=28)
+d1=d.replace(day=28, year=2011)
 d1
 #tuple : date time value
 

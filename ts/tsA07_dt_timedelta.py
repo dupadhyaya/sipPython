@@ -16,13 +16,11 @@ print("weeks       :", datetime.timedelta(weeks=1))
 #months, years not avl
 #print("months       :", datetime.timedelta(months=1))
 
-
+#%%%
 #Date Arithmetic: Date math uses the standard arithmetic operators. 
 import datetime
-
 today = datetime.date.today()
 today
-
 #simple arithmetic
 today + 1 #will not work
 today + datetime.timedelta(days=1)  #this will work
@@ -70,7 +68,6 @@ for attr in [ 'year', 'month', 'day', 'hour', 'minute', 'second', 'microsecond']
     
 #combining date with time
 import datetime
-
 t = datetime.time(6, 30, 40)
 t
 d = datetime.date.today()

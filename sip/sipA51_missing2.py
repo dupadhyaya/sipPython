@@ -1,11 +1,7 @@
 #Missing Values
 #-----------------------------
-#%
-
-#handling missing values
-#find, row, col, total, 
-#import, 
-#handle, replace (techniques)
+#%#handling missing values
+#find, row, col, total, #import, #handle, replace (techniques)
 
 # import the pandas library
 import pandas as pd
@@ -21,23 +17,23 @@ df
 #o make detecting missing values easier (and across different array dtypes), Pandas provides the isnull() and notnull() functions, which are also methods on Series and DataFrame objects 
 df.isnull()  #cell wise 
 df.notnull()
-
 df.isna() 
 df.isna() == df.isnull()
+df.isna() == df.notnull()
 
 #
 df
-df.HR.isnull()
-df.MM.isnull().sum()  #how many missing
-df.isnull().sum() 
-
+df.HR.isnull() # missing in HR 
+df.MM.isnull().sum()  #how many missing in HR col
+df.isnull().sum() # how many missing in data frame
+df.MM.sum()
 #filling missing values
 df.HR.fillna(0, inplace=True)
+df.HR.fillna(np.random.randint(10,200))
 df  #set column one
 
 df.fillna(99)  #only show not replaced
 df.fillna(99).isnull().sum()  #no missing values now
-
 
 #filling missing values fwd / reverse left / right
 #Fill NA Forward and Backward
@@ -46,8 +42,9 @@ df.fillna(99).isnull().sum()  #no missing values now
 df
 df.fillna(method='pad') #same column, fill fwd (first row is not filled)
 df.fillna(method='backfill')  #yash is left out
-
+df.fillna(method='backfill', axis=1)
 #drop missing values
+df
 df.dropna()
 df.dropna(axis=0)  #keep only complete rows
 df
@@ -82,12 +79,34 @@ df.MM.mean()  #R does not allow this. na.rm=T required
 df
 meanMM = df.MM.mean()
 meanMM
-df['MM'] = df.MM.fillna(10,inplace=True)
-df['MM'] = df['MM'].fillna(meanMM, inplace=True)
 df
-data_name[‘column_name’].replace(0, np.nan, inplace= True)
-#%%%
+df['MM'].fillna(74.2, inplace=True)
+df
+df['HR'].fillna(meanMM, inplace=True)
+df['Stats'].fillna(80, inplace=True)
 
+df
+#%%%
+df.mean(axis=0)  #col
+df.mean(axis=1)  #col
+df.isna()
+df
+
+#%%%
+#fill missing values with random values
+df2=df
+df2
+import random
+df3=df2.fillna(random.random()* 100)
+df3
+df = df.apply(lambda x: x.fillna(np.random.choice(x.dropna())), axis=1)
+df2
+
+df["HR"].fillna(lambda x: random.choice(df[df['HR'] != np.nan]["HR"]), inplace =True)
+df
+
+df['HR'].apply(lambda x: np.random.choice([x for x in range(min(df['HR']),max(df['HR'])]) if (np.isnan(x)) else x))
+#
 import numpy
 dataset = read_csv('pima-indians-diabetes.csv', header=None)
 # mark zero values as missing or NaN

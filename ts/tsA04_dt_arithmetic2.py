@@ -39,3 +39,40 @@ print("t3 =", abs(t3))
 from datetime import timedelta
 t = timedelta(days = 5, hours = 1, seconds = 33, microseconds = 233423)
 print("total seconds =", t.total_seconds())
+
+
+#
+from dateutil.relativedelta import relativedelta
+import datetime
+myBirthday = datetime.datetime(1994,6,23,16,20,0,0)
+type(myBirthday)
+now = datetime.datetime.now()
+type(now) #datetime.datetime
+difference = relativedelta(now, myBirthday)
+difference.years
+
+#import df, calculate age
+df = pd.read_csv('data/studentdata.csv')
+df
+df.dob.head()
+df.dtypes
+#convert date in string to date
+from datetime import datetime
+dob2 = [datetime.strptime(x, '%Y-%m-%d') for x in df.dob]
+type(dob2)
+dob2
+today = datetime.today()
+today
+dob2
+difference1 = relativedelta(today, dob2)
+
+dob3 = [parse(x) for x in df.dob]
+#not working
+
+import pandas as pd
+df['dob4'] = pd.to_datetime(df.dob)
+df.dtypes
+type(df.dob4)
+
+today = datetime.today()
+difference1 = relativedelta(today, dob2)

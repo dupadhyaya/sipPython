@@ -76,3 +76,18 @@ type(df.dob4)
 
 today = datetime.today()
 difference1 = relativedelta(today, dob2)
+
+df.dtypes
+df['dob5'] = df['dob4'] - pd.DateOffset(years=1)
+df.dtypes
+df['dob6'] = df['dob5'] - pd.Timedelta(days=365)
+df
+rom dateutil.relativedelta import  relativedelta
+
+df["dob7"] = df["dob4"].apply(lambda x: x - relativedelta(years=1))
+df
+from dateutil.relativedelta import relativedelta, MO
+delta = relativedelta(hours=25, day=1, weekday=MO(1))
+df['dob7'] + delta
+relativedelta(df.dob5, df.dob4)
+#pd.offsets.DateOffset(years=1)

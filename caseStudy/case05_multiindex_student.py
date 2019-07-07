@@ -110,30 +110,26 @@ newDF
 newDF.head(5)
 #it is working only on course
 #newDF.loc[slice(1:5),]
-
-
-newDF
 newDF.index
-newDF.index(axis=0)
+#newDF.index(axis=0)
 newDF.reset_index()
 newDF.columns.droplevel()
-newDF2.columns = newDF.columns.droplevel(0)
-newDF2.head(5)
-#https://stackoverflow.com/questions/22233488/pandas-drop-a-level-from-a-multi-level-column-index
-newDF.head()
-newDF.xs('Academics', axis=1, drop_level=True).head(5)
-newDF.xs('Personal', axis=1, drop_level=True).head(5)
-newDF.xs('Personal', axis=0, drop_level=True).head(5)  #error no Personal level
+newDF.columns = newDF.columns.droplevel(0)
+newDF.head(5)
+
 #another way
+
 newDF.columns = student1.columns 
 newDF.head(5)
 
 #Another Trick
+newDF = pd.DataFrame(student1.values, columns= pd.MultiIndex.from_frame( dfcol))
+newDF
 newDF.sum(level=1,axis=1)
 newDF.columns=newDF.columns.get_level_values(1)
 newDF.head()
 
-#drop levels
+#drop levels -errors
 newDF.droplevel(level=0, axis=1).head(3)
 newDF.droplevel(level=1, axis=1).head(3) #all of level0
 

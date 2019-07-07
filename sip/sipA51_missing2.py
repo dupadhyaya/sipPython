@@ -127,4 +127,7 @@ print(dataset.isnull().sum())
 #https://www.tutorialspoint.com/python_pandas/python_pandas_missing_data.htm
 
 
-
+df.apply(lambda x: sum(x.isnull().values), axis=0) # columns
+df.apply(lambda x: sum(x.isnull().values), axis=1) # rows
+sum(df.apply(lambda x: sum(x.isnull().values), axis=1) >= 1) # rows with NA > 1
+sum(df.apply(lambda x: sum(x.isnull().values), axis=1) >= 0) # rows with NA > 1

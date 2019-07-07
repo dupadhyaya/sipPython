@@ -5,12 +5,16 @@ import numpy as np
 import pandas as pd
 
 semester = ['Semester1'] * 3 + ['Semester2'] + ['Semester3'] * 3
-semester
+print(semester, end=',')
 subjects = ['S11','S12','S21','S31','S32','S33','S33']
-subjects
+print(subjects, end =',')
 students = ['Student1','Student2','Student3','Student4']
+print(students, end =' , ')
+#------------------------
 colDF = pd.DataFrame({'SEMESTER':semester, 'SUBJECTS':subjects})
 colDF
+
+pd.MultiIndex.from_product([2019,2018],[1,2])
 pd.MultiIndex.from_frame(dfcol)
 colIndex = pd.MultiIndex.from_frame(colDF)
 colIndex
@@ -51,7 +55,9 @@ result2c.drop(86, axis=1)
 result2c.drop([('Semester1','S11')], axis = 1) 
 #Remove one subject
 
-
+result2d = result2.copy()
+result2d.index.names
+result2d.index.nlevels
 
 #Remove unused levels
 i = pd.MultiIndex.from_product([range(2), list('ab')])
@@ -63,3 +69,14 @@ i[2:]
 #The 0 from the first level is not represented and can be removed
 #[0,0]
 i[2:].remove_unused_levels()
+
+
+
+#
+MultiIndex.from_arrays(arrays[, sortorder, …])	Convert arrays to MultiIndex.
+MultiIndex.from_tuples(tuples[, sortorder, …])	Convert list of tuples to MultiIndex.
+MultiIndex.from_product(iterables[, …])	Make a MultiIndex from the cartesian product of multiple iterables.
+MultiIndex.from_frame(df[, sortorder, names])	Make a MultiIndex from a DataFrame.
+
+
+#https://pandas.pydata.org/pandas-docs/stable/reference/indexing.html#datetimeindex

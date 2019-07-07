@@ -26,6 +26,12 @@ df.shape
 
 #create Pandas DF
 
+string1 = "student"
+list1 = [1,2,3,4,5]
+for dhiraj in range(1, 21):    print(string1 + str(dhiraj))
+
+
+'student'.join(map(lambda x: x + str(list1), list2 ))
 #Groupy
 
 

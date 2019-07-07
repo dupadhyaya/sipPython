@@ -31,3 +31,10 @@ mtcars[0:3]
 
 
 #columns
+
+
+
+#isin
+employees.loc[employees['Occupation'].isin(['Chemist','Programmer'])])
+mtcars.gear.value_counts()
+mtcars.loc[mtcars['gear'].isin([4,5])]

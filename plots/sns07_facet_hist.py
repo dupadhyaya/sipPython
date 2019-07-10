@@ -1,4 +1,4 @@
-#
+#Facet Histogram
 #-----------------------------
 #%
 import seaborn as sns
@@ -29,3 +29,4 @@ g = sns.FacetGrid(data, row='gender', col='course', size=4)
 g.map(plt.hist, 'age', alpha=0.5, bins=15)
 g.add_legend()
 plt.show()
+

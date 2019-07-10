@@ -17,7 +17,7 @@ data[['Open','High','Low','Close']]
 data[['Open','High','Low','Close','WAP']].plot()
 data.dtypes
 data.head()
-
+#--------------------
 data[['Open','Close']].plot()
 data.columns
 data.index
@@ -26,7 +26,6 @@ quotes = data2[['Date', 'Open', 'High', 'Low', 'Close']].copy()
 quotes.head()
 f1, ax = plt.subplots(figsize = (10,5))
 from mpl_finance import candlestick_ohlc
-candlestick
 #
 
 
@@ -48,7 +47,7 @@ alldays = DayLocator()              # minor ticks on the days
 weekFormatter = DateFormatter('%b %d')  # e.g., Jan 12
 dayFormatter = DateFormatter('%d')      # e.g., 12
 
-quotes = pd.read_csv('stocks/yahoo_stocks.csv',                     index_col=0,    parse_dates=True,    infer_datetime_format=True)
+quotes = pd.read_csv('stocks/yahoo_stocks.csv',                     index_col=0,  parse_dates=True, infer_datetime_format=True)
 
 # select desired range of dates
 quotes = quotes[(quotes.index >= date1) & (quotes.index <= date2)]
@@ -61,7 +60,7 @@ ax.xaxis.set_major_formatter(weekFormatter)
 # ax.xaxis.set_minor_formatter(dayFormatter)
 
 # plot_day_summary(ax, quotes, ticksize=3)
-candlestick_ohlc(ax, zip(mdates.date2num(quotes.index.to_pydatetime()),                         quotes['Open'], quotes['High'],quotes['Low'], quotes['Close']), width=0.6)
+candlestick_ohlc(ax, zip( mdates.date2num( quotes.index.to_pydatetime()), quotes[ 'Open'], quotes['High'],quotes['Low'], quotes['Close']), width=0.6)
 
 ax.xaxis_date()
 ax.autoscale_view()

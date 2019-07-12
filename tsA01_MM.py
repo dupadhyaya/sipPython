@@ -86,3 +86,95 @@ pd.timedelta_range(0, periods=9, freq='2H20T')
 from pandas.tseries.offsets import BDay
 pd.date_range('2019-07-01', periods=9, freq=BDay())
 #see the gap in days - Sat & SUn
+
+#%%%
+#using Frequencies and Offsets
+
+
+
+
+#%%%
+#Reading Stock Data
+#conda install pandas-datareader
+from pandas_datareader import data
+#https://pandas-datareader.readthedocs.io/en/latest/
+#https://pandas-datareader.readthedocs.io/en/latest/remote_data.html#remote-data-google
+
+
+goog = data.DataReader('GOOG', start='2004', end='2005', data_source='yahoo')
+goog.head()
+
+sbi = data.DataReader('SBIN.NS', start='2018', end='2019', data_source='yahoo')
+sbi #https://in.finance.yahoo.com/quote/SBIN.NS?ltr=1
+sbi.head(3).append(sbi.tail(2))
+#https://github.com/swapniljariwala/nsepy
+#https://medium.com/@rohanjoseph_91119/stock-analysis-in-python-4e7b7884517a
+from datetime import datetime
+start1 = datetime(2017, 1, 1)
+end1 = datetime(2019, 7, 10)
+icici = data.DataReader('ICICIBANK.NS', start=start1, end=end1, data_source='yahoo')
+icici #https://in.finance.yahoo.com/quote/SBIN.NS?ltr=1
+icici.head(3).append(icici.tail(2))
+#https://in.finance.yahoo.com/quote/ICICIBANK.NS/
+#https://in.finance.yahoo.com/quote/ICICIBANK.NS/history?p=ICICIBANK.NS
+
+#--------
+stockData = icici['Close']
+#visualise
+import matplotlib.pyplot as plt
+import seaborn
+seaborn.set()
+#---
+stockData
+stockData.plot()
+#just Close has been plotted with TS
+#how to plot all ?
+
+#Resampling- aggregation, asfreq - data selection
+stockData.plot(alpha=0.5, style='-')
+stockData.resample('BA').mean().plot(style=':')
+#pd.options.display.float_format = '{:.2f}'.format
+plt.figure(figsize=(7,5))
+stockData.plot(alpha=0.5, style='-')
+stockData.resample('BA').mean().plot(style=':')
+stockData.asfreq('BA').plot(style='--');
+plt.legend(['CLOSE','RESAMPLE','ASFREQ'], loc='upper left')
+
+#resample - avg of year, asfreq - value at end of year
+
+#asfreq options of ffill, bfill 
+#transactions only on business days
+stockData[0:31]  #7, 8 th Jan 2001 missing: how to fill these values
+data1 = stockData[0:31]
+data1.asfreq('D').plot(figsize=(10,5))
+#see the breaks
+data1.asfreq('D', method='ffill')
+data1.asfreq('D', method='ffill').plot(figsize=(10,5))
+#others bfill : plot together
+fig, ax = plt.subplots(2, sharex=True, figsize=(10,5))
+data1.asfreq('D').plot(ax=ax[0], marker='x')
+data1.asfreq('D', method='ffill').plot(ax=ax[1], marker='D')
+#https://matplotlib.org/api/markers_api.html
+data1.asfreq('D', method='bfill').plot(ax=ax[1], marker='d')
+ax[1].legend(['FORWARD fill','BACKWARD fill']);
+
+
+#drawing line - single and multiple
+data1
+data1.asfreq('D').plot(figsize=(10,5))
+plt.axvline(pd.to_datetime('2017-01-17'), color='r', linestyle='--', lw=2)
+#
+data1
+xcoords = [pd.to_datetime('2017-01-17'), pd.to_datetime('2017-01-20')]
+data1.asfreq('D').plot(figsize=(10,5))
+for xc in xcoords:   plt.axvline(x=xc, color='r')
+
+#
+# x coordinates for the lines with legend
+xcoords = [pd.to_datetime('2017-01-17'), pd.to_datetime('2017-01-20')]
+# colors for the lines
+colors = ['r','k']
+data1.asfreq('D').plot(figsize=(10,5))
+for xc,c in zip(xcoords,colors):
+    plt.axvline(x=xc, label='line at x = {}'.format(xc), c=c)
+plt.legend();

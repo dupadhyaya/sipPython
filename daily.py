@@ -132,6 +132,10 @@ import statsmodels.api as sm
 #https://vincentarelbundock.github.io/Rdatasets/datasets.html
 mtcars = sm.datasets.get_rdataset(dataname='mtcars', package='datasets')
 mtcars.data.head()
+#%%%
+from pydataset import data
+mtcars = data('mtcars')
+mtcars.head()
 
 #%%
 #Load from Excel/ CSV and export to

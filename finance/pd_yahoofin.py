@@ -16,11 +16,11 @@ start = datetime.datetime(2019, 6, 1)
 end = datetime.datetime(2019, 6, 30)
  
 #DataReader method name is case sensitive
-df2 = web.DataReader("sbin.ns", 'yahoo', start, end)
-df2 
+sbi = web.DataReader("sbin.ns", 'yahoo', start, end)
+sbi 
 #invoke to_csv for df dataframe object from 
 #DataReader method in the pandas_datareader library
-df2.to_csv('data/yahoo_sbi.csv')
+sbi.to_csv('data/yahoo_sbi.csv')
 
 
 #Populating a CSV File for a Watch List of Stock

@@ -71,6 +71,9 @@ ma1  #moving average over 5 day period
 ma1.plot(color='black', linewidth=1.5, marker='', figsize=(8, 4), label='Moving Average Attenance 5 Day Period')
 
 #using MPL 
+from matplotlib.dates import DateFormatter
+import matplotlib.dates as mdates
+#
 fig, ax = plt.subplots(figsize=(8,4))
 ma1.plot(ax=ax)
 workshop1.attendance1.plot(ax=ax)
@@ -85,46 +88,17 @@ for x,y in zip(xs,y1s):
 fig.text(0.7, 0.8, r'Attendance Rolling Plot', ha="center", va="bottom", size="medium",color="blue")
 ax.set_title("Time Series Plot")
 plt.show();
-    
+
+#
+fig, ax = plt.subplots(figsize=(8,4))
+workshop1.attendance1.plot(ax=ax)
+#myFmt = DateFormatter("%d/%a")
+#ax.xaxis.set_major_formatter(myFmt)
+myxticks = pd.date_range(workshop1.index.min(), workshop1.index.max(), freq='D')
+plt.xticks(myxticks, rotation='vertical') 
+plt.show()
 #https://www.programiz.com/python-programming/methods/built-in/format
 #%%
-#attendance of multiple classes
-random.seed(1234)
-attend2 = np.random.randint(low=25,high=40, size=(100,3))
-attend2
-dates2 = pd.date_range('2019-06-15', periods=100, freq='B')
-random.seed(1234)
-import random
-classType = random.choices(['Theory','Tutorial', 'Practical'], k=100)
-classType
-workshop2 = pd.DataFrame(attend2, index=dates2)
-#not able to add another column classType
-workshop2
-workshop2['classType'] = classType
-workshop2.columns=(["BBA", "MBA", "BTECH",'classType'])
-workshop2.head()
-#categories no order
-workshop2.classType = workshop2.classType.astype('category')
-workshop2.describe(include='all')
-workshop2.dtypes
 
-#%%%
 
-#plot
-workshop2.plot(figsize=(10,5))
-workshop2[['BBA','MBA','BTECH']].plot(figsize=(10,5))
-workshop2.plot.scatter(x='MBA', y='BBA', c='DarkBlue')
-
-workshop2['BBA'].plot()
-workshop2['MBA'].plot()
-
-#different plots from different columns
-cols_plot = ['BBA', 'MBA', 'BTECH']
-axes = workshop2[cols_plot].plot(marker='.', alpha=0.8, linestyle='None', figsize=(11, 9), subplots=True)
-for ax in axes:    ax.set_ylabel('Daily Attendance')
-# Line
-axes = workshop2[cols_plot].plot(marker='.', alpha=0.8, figsize=(11, 9), subplots=True, linestyle='-')
-for ax in axes:    ax.set_ylabel('Daily Attendance')
-#ax.text('2019-09-1', 30, "New Year's Day")
-ax.text('2019-09-1', 30, "New Year's Day")
 

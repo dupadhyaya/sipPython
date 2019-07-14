@@ -24,3 +24,8 @@ even2
 
 
 #uses - quick creation of list like items
+gender = random.choices(['M','F'], weights=(.7,.3), k=100)
+gender.size()
+gender.count('M')
+from collections import Counter
+Counter(gender)

@@ -17,7 +17,7 @@ import seaborn as sns
 #DF
 rollno = np.arange(1, 101)
 rollno
-
+random.seed(1234)
 gender = random.choices(['M','F'], weights=(.7,.3), k=100)
 gender.count('M')
 Counter(gender)
@@ -34,15 +34,19 @@ catscore
 
 classXII = np.trunc(np.random.normal(loc=60, scale=10, size=100))
 classXII
-
+np.mean(classXII)
+np.std(classXII)
+sum(classXII)/100
 #join them
 students = pd.DataFrame({'rollno':rollno, 'gender':gender,'course':course, 'grade':grade, 'catscore':catscore, 'classXII':classXII})
-students
+students.head()
 students.dtypes
 #convert gender, course, grade to category
 from pandas.api.types import CategoricalDtype
 gradeCatType = CategoricalDtype(categories=["A+", "A", "A-"],ordered=True)
+gradeCatType
 students['grade'] = students['grade'].astype(gradeCatType)
+
 students[['course', 'gender']] = students[['course', 'gender']].astype('category') 
 students.dtypes
 
@@ -50,6 +54,8 @@ students.dtypes
 students.groupby('gender').size()
 students.gender.value_counts()
 students.groupby(['gender','course']).size()
+students.groupby(['course','gender']).size()
+
 students.groupby(['gender','course']).aggregate({'rollno':'count'})
 students.groupby(['gender','course']).aggregate({'rollno':'count', 'catscore':[np.mean,np.max], 'classXII':[np.max,np.min]})
 
@@ -59,20 +65,25 @@ students.groupby(['gender','course']).aggregate({'rollno':'count', 'catscore': {
 students.groupby(['gender','course']).aggregate({'rollno':'count', 'catscore':np.mean, 'classXII':np.max}).unstack()
 
 mapping = {'classXII': 'mean', 'catscore': 'max'}
-students.groupby(['gender','course']).aggregate(mapping)
+students.groupby(['gender','course','grade']).aggregate(mapping)
+gp1 = students.groupby(['gender','course','grade'])
+gp1.aggregate(mapping)
 
 students[['classXII','catscore','gender','course']].groupby(['gender','course']).aggregate ( ['mean', np.median, np.max])
 students.groupby(['gender','course']).agg({'rollno':'count'}).add_prefix('Count_')
-
 
 #lets to similar things from pivot table 
 #pivot_table, index, columns, values
 students.pivot_table(index='gender', columns='course', values='rollno', aggfunc='count')
 students.groupby(['gender','course']).size().unstack()
+students.groupby(['gender','course']).size()
 
 students.pivot_table(index='course', columns='gender', values='classXII', aggfunc=np.mean)
 
-students.pivot_table(index=['course','grade'], columns='gender', values='classXII', aggfunc=np.mean, fill.value=0)
+students.pivot_table(index='course', columns='grade', values='classXII', aggfunc=np.max)
+
+
+students.pivot_table(index=['course','grade'], columns='gender', values='classXII', aggfunc=np.mean)
 #see the order of grades : A+,A,A-; if no value, fill it with 0
 
 aggfunc1 ={'classXII': np.mean, 'catscore': [min, max, np.mean]}
@@ -94,9 +105,7 @@ pd.crosstab(index=students['course'], columns=students['gender'], margins=True, 
 #numeric summ also possible
 pd.crosstab(index=students['course'], columns=students['gender'], values=students['classXII'], aggfunc='mean').round(0)
 
-
-pd.crosstab(df.make, df.body_style, values=df.curb_weight, aggfunc='mean').round(0)
-pd.crosstab(students.course, students.gender)
+pd.crosstab(students.course, students.gender, margins=True)
 pd.crosstab(students.course, students.gender, normalize='columns')
 #proportion in columns
 pd.crosstab(students.course, students.gender, normalize='index')
@@ -120,9 +129,11 @@ pd.crosstab(a, [b, c], rownames=['a'], colnames=['b', 'c'])
 students.head()
 #melt-Unpivots” a DataFrame from wide format to long format, optionally leaving identifier variables set.
 #pandas.melt(frame, id_vars=None, value_vars=None, var_name=None, value_name='value', col_level=None)
+students.head()
 pd.melt(students, id_vars='rollno', value_vars=['catscore','classXII'], var_name='MarksCategory', value_name='marks')
 #we don't want all columns
 melt1 = pd.melt(students[['rollno', 'gender', 'catscore','classXII']], id_vars=['rollno', 'gender'], value_vars=['catscore','classXII'], var_name='MarksCategory', value_name='marks')
+melt1.head()
 #another way
 students.melt(id_vars=['rollno', 'gender'], value_vars=['catscore', 'classXII'], var_name='MarksCategory', value_name='marks')
 

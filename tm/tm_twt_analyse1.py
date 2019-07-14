@@ -1,13 +1,10 @@
-#
+#Download Tweets
 #-----------------------------
-#%
-# -*- coding: utf-8 -*-
-
 #Download tweets from twitter
 import tweepy
 from tweepy import OAuthHandler
 
-#credentials
+#credentials : from developer account in twitter
 consumerKey='uRDuync3BziwQnor1MZFBKp0x'
 consumerSecret='t8QPLr7RKpAg4qa7vth1SBsDvoPKawwwdEhNRjdpY0mfMMdRnV'
 AccessToken='14366551-Fga25zWM1YefkTb2TZYxsrx2LVVSsK0uSpF08sugW'
@@ -24,3 +21,4 @@ tweets = api.search(keyword, count=10, lang="en", exclude="retweets", tweet_mode
 for item in tweets:    print(item)
 
 #data related to tweet, note its datastructure
+#under development

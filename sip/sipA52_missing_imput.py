@@ -7,17 +7,22 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-sleep1 = pd.read_csv('data/sleep.csv')
+sleep1 = pd.read_csv('sleep.csv')
 sleep1.head()
-
-sleep = sleep1.copy()
+sleep2 = pd.read_csv('https://raw.githubusercontent.com/dupadhyaya/sipPython/master/data/sleep.csv')
+sleep2
+sleep = sleep2.copy()
 
 #select to drop the rows only if all of the values in the row are missing.
 sleep.dropna(how='all',inplace=False).shape
+sleep.isna().sum(axis=1)
+sleep.isna().sum(axis=0)
 
 #just want to drop a column (variable) that has some missing values.
-sleep.dropna(axis=1,inplace=False)                
-
+sleep.head()
+sleep.dropna(axis=1,inplace=False).head()                
+sleep.dropna(axis=0,inplace=False).head()                
+sleep.shape
 #keep only the rows with at least 4 non-na values:
 sleep.dropna(thresh=9, axis=0, inplace=False).shape
 sleep.dropna(thresh=55, axis=1, inplace=False).shape

@@ -1,8 +1,8 @@
-#Stack Plot: Cumumulative Sum
-#Combined Dept
+#Stack Plot: Cumumulative Sum #Combined Dept
 #-----------------------------
-#%
-
+import numpy as np
+import matplotlib.pyplot as plt
+#
 rng = np.arange(50)
 rng.size
 #50 data for each country between 0 and 10
@@ -20,3 +20,4 @@ ax.legend(loc='upper left')
 ax.set_ylabel('Total debt')
 ax.set_xlim(xmin=yrs[0], xmax=yrs[-1])
 fig.tight_layout()
+plt.show();

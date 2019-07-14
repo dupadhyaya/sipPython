@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-#-----------------------------
-#%
 #General Introduction : based on mtcars data set
 #%
 

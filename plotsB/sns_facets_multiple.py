@@ -1,27 +1,31 @@
-# -*- coding: utf-8 -*-
+#Facet PLot
 #https://seaborn.pydata.org/tutorial/axis_grids.html
 #-----------------------------
-#%
-
 import seaborn as sns
 import matplotlib.pyplot as plt
 sns.set(style="ticks")
-
+#
+sns.FacetGrid?
+sns.FacetGrid( data,  row=None, col=None, hue=None, col_wrap=None,   sharex=True, sharey=True,height=3, aspect=1, palette=None, row_order=None,  col_order=None, hue_order=None, hue_kws=None,    dropna=True, legend_out=True,  despine=True,  margin_titles=False,    xlim=None,  ylim=None,  subplot_kws=None,  gridspec_kws=None, size=None,)
+#%%
 tips = sns.load_dataset("tips")
-tips
+tips.head()
+tips.shape
+tips.columns
 
-g = sns.FacetGrid(tips, col="time")
+#Histogram - Facet
+sns.FacetGrid?
+g = sns.FacetGrid(data=tips, row=None, col="time")
 plt.figure(figsize=(7, 5))
 g = sns.FacetGrid(tips, col="time")
 g.map(plt.hist, "tip");
 
-#
+#Facet Scatter
 g = sns.FacetGrid(tips, col="sex", hue="smoker")
 g.map(plt.scatter, "total_bill", "tip", alpha=.7)
 g.add_legend();
 
-
-#
+#Regression Plot
 g = sns.FacetGrid(tips, row="smoker", col="time", margin_titles=True)
 g.map(sns.regplot, "size", "total_bill", color=".3", fit_reg=False, x_jitter=.1);
 
@@ -29,7 +33,7 @@ g.map(sns.regplot, "size", "total_bill", color=".3", fit_reg=False, x_jitter=.1)
 g = sns.FacetGrid(tips, col="day", height=4, aspect=.5)
 g.map(sns.barplot, "sex", "total_bill");
 
-# Dist Plot
+# Distribution Plot
 ordered_days = tips.day.value_counts().index
 g = sns.FacetGrid(tips, row="day", row_order=ordered_days, height=1.7, aspect=4,)
 g.map(sns.distplot, "total_bill", hist=False, rug=True);

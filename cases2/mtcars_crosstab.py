@@ -1,9 +1,7 @@
-#Cross Tab
+# mtcars - Cross Tab
 #%%%
-
 import pandas as pd
 import seaborn as sns
-
 # Read in the CSV file and convert "?" to NaN
 df1 = pd.read_csv('data\mtcars.csv')
 df1.head()

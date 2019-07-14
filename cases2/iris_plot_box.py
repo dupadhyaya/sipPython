@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #Plots using iris data sets
 #-----------------------------
 #%

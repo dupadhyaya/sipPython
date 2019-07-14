@@ -17,21 +17,25 @@ import seaborn as sns
 #DF
 rollno = np.arange(1, 101)
 rollno
-random.seed(1234)
+random.seed(123)
 gender = random.choices(['M','F'], weights=(.7,.3), k=100)
 gender.count('M')
 Counter(gender)
 len(gender)
 
+random.seed(321)
 course = random.choices(['BBA','MBA','BTECH'], weights=(.4,.3,.3), k=100)
 Counter(course)
 
+random.seed(432)
 grade = random.choices(['A-','A+','A'], weights=(.4,.3,.3), k=100)
 Counter(grade)
 
+random.seed(321)
 catscore = np.random.randint(60,99, size=100)
 catscore
 
+random.seed(111)
 classXII = np.trunc(np.random.normal(loc=60, scale=10, size=100))
 classXII
 np.mean(classXII)
@@ -58,6 +62,54 @@ students.groupby(['course','gender']).size()
 
 students.groupby(['gender','course']).aggregate({'rollno':'count'})
 students.groupby(['gender','course']).aggregate({'rollno':'count', 'catscore':[np.mean,np.max], 'classXII':[np.max,np.min]})
+
+#List students classXII from the group where mean < ? : M-BTech
+students.groupby(['gender','course'])['classXII'].agg( ['count', np.mean])
+students.groupby(['gender','course'])['classXII'].filter(lambda x: x.mean() < 53)
+#students of the group where no of students > 25
+students.groupby(['gender','course']).size()
+students.groupby(['gender','course']).filter(lambda x: len(x) > 25, dropna=True)
+#ravel
+grouped = students.groupby('gender').aggregate({'classXII': [min, max, np.mean]}) 
+grouped
+# Using ravel, and a string join, we can create better names for the columns:
+grouped.columns = ["_".join(x) for x in grouped.columns.ravel()]
+grouped
+#-----
+# Define the aggregation procedure outside of the groupby operation
+aggregations1 = {'classXII':'mean', 'catscore': lambda x: max(x) - 1}
+students.groupby('gender').agg(aggregations1)  #2nd highest in catscore
+students.groupby('gender')['catscore'].max()
+
+#-----------
+grouped2 = students.groupby('gender').agg({"classXII": [np.min, np.max, np.mean,'first','last']})
+grouped2
+grouped2.columns = grouped2.columns.droplevel(level=0)
+grouped2  #top level gone- single level of columns
+grouped2.rename(columns={"min": "min_class12", "max": "max_class12", "mean": "mean_class12", 'first':'first_class12', 'last' :'last_class12'})
+grouped2.head()
+grouped2.describe()
+
+
+#--------------
+#remove index
+students.groupby('gender', as_index=True, sort=True ).agg({"classXII": "mean"})
+students.groupby('gender', as_index=False, sort=False ).agg({ "classXII": "mean"})
+#------
+#data range of marks
+students.groupby(['course','gender']).size()
+students.groupby(['course','gender']).agg({'classXII':{'range':lambda x: max(x) - min(x), 'min':np.min, 'max':np.max}})
+#----
+students[students['grade'] == 'A-' ].groupby( ['gender', 'grade'] ).size()
+#
+grouped3 = students.groupby(['course','gender'])
+for name, group in grouped3:
+    print(name) #name of group
+    print(group)  #data related to the group
+
+grouped3.get_group(('BBA','F'))
+
+#-----
 
 students.groupby(['gender','course']).aggregate({'rollno':'count', 'catscore': {'MEANcat':np.mean,'MAXcat': np.max}, 'classXII': {'MAXxii': np.max, 'MINxii': np.min}})
 #not {}, [] combinations ; dictionary type

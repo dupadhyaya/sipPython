@@ -12,10 +12,10 @@ plt.scatter(xs,ys)
 for x,y in zip(xs,ys):
     label = "{:.2f}".format(y)
     plt.annotate(label, # this is the text
-                 (x,y), # this is the point to label
-                 textcoords="offset points", # how to position the text
-                 xytext=(0,10), # distance from text to points (x,y)
-                 ha='center') # horizontal alignment can be left, right or center
+    (x,y), # this is the point to label
+    textcoords="offset points", # how to position the text
+    xytext=(0,10), # distance from text to points (x,y)
+    ha='center') # horizontal alignment can be left, right or center
 plt.xticks(np.arange(0,10,1))
 plt.yticks(np.arange(0,5,0.5))
-plt.show()
+plt.show();

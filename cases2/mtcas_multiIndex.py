@@ -1,4 +1,4 @@
-#Muli Index
+#Mtcars - Muli Index
 #-----------------------------
 #% Multindex in Pandas DF
 import pandas as pd

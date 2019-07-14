@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-#-----------------------------
-#%
+#% mtcars - pivot Table
 #Group By / Pivot Table
 #%
 

@@ -1,12 +1,8 @@
-# -*- coding: utf-8 -*-
 #Grouped Bar Plot
 #-----------------------------
 #%A grouped barplot is used when you have several groups, and subgroups into these groups. 
-
-
 import seaborn as sns
 import matplotlib.pyplot as plt
-
 dataset_mtcars = sm.datasets.get_rdataset(dataname='mtcars', package='datasets')
 dataset_mtcars.data.head()
 df = dataset_mtcars.data

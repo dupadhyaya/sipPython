@@ -35,6 +35,8 @@ sns.pairplot(mtcars[['mpg', 'wt','hp','cyl']], hue='cyl', size=2.5)
 #facet 
 grid = sns.FacetGrid(mtcars[['mpg', 'wt','hp','am','cyl', 'gear']], row='cyl', col='gear')
 grid.map(plt.bar, 'am')
-#not working
+#not working; needs height
 
+
+#facet - 
 #factor plot

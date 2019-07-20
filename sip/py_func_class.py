@@ -9,7 +9,7 @@ block_head:
     print("hello")
     print("hi")
 
-#def my_function:
+# def my_function:
 
 
 class MyClass:

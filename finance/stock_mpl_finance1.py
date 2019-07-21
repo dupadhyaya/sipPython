@@ -4,10 +4,18 @@
 #pip install quandl  #install as admin in anaconda
 #register in quandl and create your own keys
 #https://help.quandl.com/article/320-where-can-i-find-my-api-key
-
+#quandl.get("TC1/SBIN", start_date="1970-01-01", end_date="1970-01-01")
+#https://www.quandl.com/data/TC1/SBIN-State-Bank-of-India-Adjusted-Pricing
 import matplotlib.pyplot as plt
 import quandl
+
+start1 = datetime.datetime(2017, 1, 1)
+end1 = datetime.datetime(2019, 7, 20)
+sbi_q = quandl.get("TC1/SBIN", start_date=start1, end_date=end1, api_key="4D8hkYAV4WEkcTmD9LMW")
+
 data = quandl.get("BSE/BOM532174", start_date="2019-06-01", end_date="2019-06-30", api_key="4D8hkYAV4WEkcTmD9LMW")
+data.head()
+quandl.get("BSE/BOM500112", authtoken="4D8hkYAV4WEkcTmD9LMW",  start_date="2019-06-01", end_date="2019-06-30")
 data.head()
 data.Close.plot()
 plt.show()

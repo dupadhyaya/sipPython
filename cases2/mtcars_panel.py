@@ -90,3 +90,10 @@ DF.xs(('NUMERIC', 'hp'), level=('TYPE', 'COLNAME'), axis=1)
 DF.loc[:,(slice(None),['vs','am'])]
 DF.xs('NUMERIC', level='TYPE', axis=1)
 DF.xs('CATEGORY', level='TYPE', axis=1)
+
+DF2 = DF.set_index('gear')
+DF.loc[(slice(1,7), ['mpg','hp']),:]
+#DataFrame.set_index(self, keys, drop=True, append=False, inplace=False, verify_integrity=False)[source]
+
+
+#The reason that the MultiIndex matters is that it can allow you to do grouping, selection, and reshaping operations as we will describe below and in subsequent areas of the documentation. As you will see in later sections, you can find yourself working with hierarchically-indexed data without creating a MultiIndex explicitly yourself. However, when loading data from a file, you may wish to generate your own MultiIndex when preparing the data set.

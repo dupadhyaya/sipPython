@@ -70,6 +70,53 @@ df.xs(('NUMERIC', 'am'), level=('TYPE', 'COLNAME'), axis=1)  #error
 
 df.loc[(slice(None)),:]
 
+df.columns = df.columns.droplevel()
+df
+df = pdMTCARS1.sample(5)
+df.columns = [col[1] for col in df.columns]
+df
+df = pdMTCARS1.sample(5)
+df
+df.columns = ['_'.join(col) for col in df.columns]
+df
+#when some levels have empty levels
+df = pdMTCARS1.sample(5)
+df
+df.columns = [col[0] if col[1] == '' else col[1] for col in df.columns]
+df
+
+df = pdMTCARS1.sample(5)
+df
+df = df.xs('CATEGORY', axis=1, drop_level=True)
+df #only numeric left
+
+#
+df = pdMTCARS1.sample(5)
+df
+df.columns = [['mpg', 'cyl','disp', 'hp', 'drat', 'wt', 'qsec', 'vs', 'am', 'gear','carb']]
+df
+
+#
+#A small trick using sum with level=1(work when level=1 is all unique)
+df = pdMTCARS1.sample(5)
+df.sum(level=1,axis=1)
+df.columns=df.columns.get_level_values(1)
+df
+#
+df = pdMTCARS1.sample(5)
+df
+df.droplevel(0, axis=1) 
+#
+df = pdMTCARS1.sample(5)
+df
+#
+#sum by multiindex - columns
+df.sum(axis=1)
+df.sum(axis=0)
+df
+#df.groupby(level=0)['mpg'].sum().reset_index()
+#df.groupby(['gear'], level=1, axis=1)['mpg','hp'].sum()
+#df.groupby([['cyl','gear']]).sum()[['mpg']]
 
 #------
 #can we create index in random order
@@ -92,6 +139,7 @@ DF.xs('NUMERIC', level='TYPE', axis=1)
 DF.xs('CATEGORY', level='TYPE', axis=1)
 
 DF2 = DF.set_index('gear')
+DF2.drop_levels()
 DF.loc[(slice(1,7), ['mpg','hp']),:]
 #DataFrame.set_index(self, keys, drop=True, append=False, inplace=False, verify_integrity=False)[source]
 

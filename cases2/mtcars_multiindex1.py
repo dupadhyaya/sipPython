@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #index ing python pandas
 
 #single index
@@ -107,5 +106,8 @@ df2index1
 df2index1.mpg.mean(level='gear')
 df2index1.mpg.mean(level=[0,1])
 df2index1.mpg.mean(level=[1,0])
-
-data_mean.mean(axis=1, level='type')
+df2.head()
+df2[['mpg','disp']].mean(axis=1)
+#32 rows, row means of mpg and disp
+df2[['mpg','disp']].mean(axis=0)
+#2 columns, their means

@@ -1,8 +1,5 @@
 #Pandas Panel Data - mtcars
 #-----------------------------
-#%
-
-
 from pydataset import data
 mtcars = data('mtcars')
 mtcars.head()
@@ -10,13 +7,86 @@ mtcars.head()
 mtcars.values
 mtcars.index
 mtcars.columns
+mtcars.dtypes
+mtcars[['cyl','vs', 'am', 'gear','carb']] = mtcars[['cyl','vs', 'am', 'gear','carb']].astype('category')
 data = mtcars.values
 data
-mtindexDF1 = pd.DataFrame({'TYPE':['NUMERIC','NUMERIC', 'CATEGORY', 'NUMERIC', 'NUMERIC', 'NUMERIC', 'NUMERIC', 'CATGEGORY','CATGEGORY', 'CATGEGORY', 'CATGEGORY' ], 'COLNAME': ['mpg', 'cyl','disp', 'hp', 'drat', 'wt', 'qsec', 'vs', 'am', 'gear','carb']}) 
+mtindexDF1 = pd.DataFrame({'TYPE':['NUMERIC','CATEGORY','NUMERIC', 'NUMERIC','NUMERIC', 'NUMERIC', 'NUMERIC', 'CATEGORY','CATEGORY', 'CATEGORY', 'CATEGORY' ], 'COLNAME': ['mpg', 'cyl','disp', 'hp', 'drat', 'wt', 'qsec', 'vs', 'am', 'gear','carb']}) 
 mtindexDF1
 mtindex1 = pd.MultiIndex.from_frame(mtindexDF1)
 mtindex1
 pdMTCARS1 = pd.DataFrame(data, columns=mtindex1)
-pdMTCARS1
-pdMTCARS1(['TYPE', 'COLNAME']).sort_index
-.sort_values(['TYPE', 'COLNAME'], ascending=True, inplace=True)
+pdMTCARS1.head(2)
+
+pdMTCARS1(['TYPE', 'COLNAME']).sort_index.sort_values(['TYPE', 'COLNAME'], ascending=True, inplace=True)
+pdMTCARS1.sort_index()
+df = pdMTCARS1.sample(5)
+#----
+#DataFrame.sort_index(axis=0, level=None, ascending=True, inplace=False, kind=’quicksort’, na_position=’last’, sort_remaining=True, by=None)
+#
+df
+df.sort_index(axis = 0)  #rownames
+df.sort_index(axis = 1)   #columnames - level0 : CAT, NUM
+# sorting based on column labels 
+df.sort_index(axis = 1, level=1)  # Level 1 of column names- am, carb
+df.sort_index(axis = 1, level=[1,0]).columns
+df.query('mpg > 25')
+df.swaplevel(0, 1, axis=1)  #levels in columns changed
+df.reorder_levels([1,0], axis=1)
+df
+
+#https://pandas.pydata.org/pandas-docs/version/0.15/advanced.html
+df.mean
+df.mean(level=0)
+df.mean(level=0, axis=1)
+df.mean(level=1, axis=1)
+df2 = pd.concat([df,df])
+df2
+df2.mean(level=1, axis=1)
+df2.mean(level=0, axis=1)
+df2.align(df, level=0)  #join
+df.align(df, level=0) #show them together
+df.align(df, level=1)
+df.align(df, level=1, axis=0)
+df.align(df, level=1, axis=1)
+df
+df.xs('disp', level='COLNAME', axis=1)
+df.xs('NUMERIC', level='TYPE', axis=1)
+df.xs('CATEGORY', level='TYPE', axis=1)
+df.sort_index(axis=1)
+df.sort_index(level=[1],axis=1)
+df.sort_index(level=[0],axis=1)
+df.sort_index(level=[0,1],axis=1)
+df.sort_index(level=[1,0],axis=1)
+df.loc[:,(slice(None),'am')]
+df.loc[:,(slice(None),['vs','am'])]
+df.loc[:,(slice('CATEGORY'),['vs','am'])]  #needs to be sorted
+df.sort_index(level=[0,1],axis=1).loc[:,(slice('CATEGORY'),['vs','am'])]
+#
+df
+df.xs(('NUMERIC', 'mpg'), level=('TYPE', 'COLNAME'), axis=1)
+df.xs(('NUMERIC', 'hp'), level=('TYPE', 'COLNAME'), axis=1)
+df.xs(('NUMERIC', 'am'), level=('TYPE', 'COLNAME'), axis=1)  #error
+
+df.loc[(slice(None)),:]
+
+
+#------
+#can we create index in random order
+type2 = ['CATEGORY'] * 5 + ['NUMERIC']*6
+type2
+colname2 = ['cyl','vs', 'am', 'gear','carb'] + ['mpg','disp', 'hp', 'drat', 'wt', 'qsec']
+colname2
+mtindexDF2 = pd.DataFrame({'TYPE':type2,'COLNAME': colname2}) 
+mtindexDF2
+mtindex2 = pd.MultiIndex.from_frame(mtindexDF2)
+mtindex2
+data2 = mtcars[colname2].values
+pdMTCARS2 = pd.DataFrame(data2, columns=mtindex2)
+pdMTCARS2.head(2)
+
+DF = pdMTCARS2.sample(5)
+DF.xs(('NUMERIC', 'hp'), level=('TYPE', 'COLNAME'), axis=1)
+DF.loc[:,(slice(None),['vs','am'])]
+DF.xs('NUMERIC', level='TYPE', axis=1)
+DF.xs('CATEGORY', level='TYPE', axis=1)

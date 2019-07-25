@@ -1,4 +1,4 @@
-#Advanced Time Series Plots in Python
+#Advanced Time Series Plots in Python - not tested
 #-----------------------------
 #%http://www.blackarbs.com/blog/advanced-time-series-plots-in-python/1/6/2017
 
@@ -23,14 +23,14 @@ logo_loc = 'e:/pYwork/output/'
 #-----------
 #Get time series data from Yahoo finance and recession data from FRED.
 f1 = '8d53c7024b4413ae3180a39ab9437931' # recession data from FRED
-    #https://research.stlouisfed.org/docs/api/api_key.html%5d(http:/api.stlouisfed.org/api_key.html
-start = pd.to_datetime('1999-01-01')
+#https://research.stlouisfed.org/docs/api/api_key.html%5d(http:/api.stlouisfed.org/api_key.html
+start = pd.to_datetime('2018-01-01')
 end = pd.datetime.today()
 
 mkt = '^GSPC'
 # month start b/c FED data is month start
 MKT = (web.DataReader([mkt,'^VIX'], 'yahoo', start, end)['Adj Close'] .resample('MS').mean().rename(columns={mkt:'SPX','^VIX':'VIX'}).assign( SPX_returns=lambda x: np.log(x['SPX']/x['SPX'].shift(1))).assign( VIX_returns=lambda x: np.log(x['VIX']/x['VIX'].shift(1))))
-
+MKT
 data = (web.DataReader([f1], 'fred', start, end).join(MKT, how='outer' ).dropna())
 
 p(data.head())

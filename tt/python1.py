@@ -116,3 +116,47 @@ def lab5c(no):
         print(no, " is NOT in the list ", list1)    
 lab5c(n1)
 lab5c(n2)
+
+
+#%%%
+#%%%
+#Ex6a : Write a program to print all even nos from a given no list in the same order and stop printing if any no that come after 237 in the sequence
+numbers = [386, 462, 47, 418, 907, 344, 236, 375, 823, 566, 597, 978,328, 615, 953, 345, 399, 162, 758, 219, 918, 237, 412, 566,826, 248, 866, 950, 626, 949, 687, 217, 815, 67, 104, 58, 512, 24, 892, 894, 767, 553, 81, 379, 843, 831, 445, 742, 717, 958,743, 527]
+#check for even no
+3%2==0
+4%2==0
+
+for no in numbers:
+    if (no%2 == 0)  :
+        print(no , end=', ')
+
+for no in numbers:
+    if (no%2 == 0)  :
+        print(no , end=', ')
+    if (no == 237)  :
+        break
+print(numbers, end=' , ')
+numbers.index(237)  #this is position of 237 in the list : 21st
+#print this list into a file
+#printing list
+print(*numbers, sep='\n')
+print(*numbers, file='tt/numbers2.txt')
+print('\n'.join(map(str, numbers))) 
+
+#saving into a file
+import pickle
+with open('tt/numbers2.txt', 'wb') as fp:
+    pickle.dump(numbers, fp)
+#reading it pack
+with open ('tt/numbers2', 'rb') as fp:
+    itemlist = pickle.load(fp)
+itemlist
+
+#Ex: using file as input: change the path of the file.
+#data = [line.strip() for line in open("tt/numbers2.txt", 'r')]
+#execute the earlier function
+for no in itemlist:
+    if (no%2 == 0)  :
+        print(no , end=', ')
+    if (no == 237)  :
+        break

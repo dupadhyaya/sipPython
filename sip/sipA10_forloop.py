@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#https://treyhunner.com/2016/04/how-to-loop-with-indexes-in-python/
 #for loop
 
 teamA = ['India', 'Australia','Pakistan', 'England']
@@ -45,3 +46,6 @@ for x in range(6):
     print(x, end = ' ')
 else:
     print("Finished")
+
+
+

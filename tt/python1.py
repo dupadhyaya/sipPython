@@ -160,3 +160,133 @@ for no in itemlist:
         print(no , end=', ')
     if (no == 237)  :
         break
+
+
+#%%%
+#Ex 7: Write a Python program that accepts a single integer value entered by the user. If the value entered is less than one, the program prints nothing. If the user enters a positive integer, n, the program prints an n×n box drawn with * characters. If the users enters 1, for example, the program prints * If the user enters a 2, it prints ** ** An entry of three
+
+def lab7a(userinput):
+    print("your input is ", userinput)
+    if (userinput <=1 )  :
+        print("No <= 1")
+    else:
+        for i in range(0, userinput):
+            for j in range(0, userinput):
+                print('*', end =' ')
+            print(' ', end = ' ')
+#use the function now
+lab7a(1)
+lab7a(2)
+lab7a(3)
+lab7a(4)
+userVal = int(input("Enter a integer value between 1 and 10 : "))
+print("your input is ", userVal)
+lab7a(userVal)
+
+
+#%%%
+#Ex 8a : Write a Python program to sum of two given integers.However, if the sum is between 15 to 20 it will return 20. 
+#https://www.geeksforgeeks.org/taking-multiple-inputs-from-user-in-python/
+
+x, y = [int(x) for x in input("Enter 2 value with space in betw: ").split()] 
+print(x, " ", y)
+#sumNos = n1 + n2
+def lab8a(n1, n2):
+    sumNos = n1 + n2
+    print('Sum of the two nos is ', sumNos)
+    if (sumNos > 15 & sumNos < 20)  :
+        print('Sum is ', 20 , " because their sum is between 15 & 20")
+    else:
+        print("Sum ", sumNos,  " not between 15 and 20")
+
+lab8a(x,y)
+
+
+#Ex 8b : Write a Python program to compute the future value of a specified principal amount, rate of interest, and a number of years.
+#Test Data : amt = 10000, int = 3.5, years = 7 Expected Output : 12722.79
+#FV = (PV * Rate * Interest) / 100 + PV
+amt = 10000; int=3.5; years=7
+print('Amount : ', amt, ' Interest : ', int, " Years : ", years)
+#simple Interest
+FV1 = (amt * int * years)/ 100 + amt
+print("Future Value using Simple Interest ", FV1)
+#compount Interest
+FV2 = amt * pow((1 + int/100),years)
+print("Future Value using Compound Interest ", round(FV2,2))
+
+
+#%%
+#Ex 9 : Write a Python program to create an array of 5 integers and display the array items. Access individual element through indexes. Write a Python program to convert an array to an ordinary list with the same items.
+
+from array import *
+array1 = array('i',[4,8,10,3,6])
+print(array1)
+for element in array1:  print(element, end=' , ')
+list(array1)
+print("Array to List ", list(array1))
+
+#another method using numpy
+import numpy as np
+array2 = np.array([40,80,100,30,60], dtype='int32')
+print(array2)
+for element in array2:  print(element, end =' : ')
+print("NP array to list ", list(array2))
+
+
+#Ex10 : Write a Python program to display all the member name of an enum class ordered by their values. Expected Output: Country Name ordered by Country Code: Afghanistan Algeria Angola Albania Andorra Antarctica
+countries = {'Afghanistan': 93, 'Albania': 355, 'Algeria': 213, 'Andorra': 376, 'Angola': 244, 'Antarctica': 672}
+countries
+for i in countries:     print(i, countries[i])
+countries.keys()
+countries.values()
+list(countries.values())
+#another way if codes are not known
+countries2 = ['Aghanistan', 'Algeria', 'Angola', 'Albania', 'Andora', 'Antartica']
+ecountries2 = enumerate(countries2)
+print(list(ecountries2))
+print(list(enumerate(countries2, start=2)))  #start code from 2
+#https://www.geeksforgeeks.org/enumerate-in-python/
+# printing the tuples in object directly 
+for element in enumerate(countries2): print(element) 
+# changing index and printing separately 
+for count,element in enumerate(countries2,100): print(count,element) 
+#https://www.w3resource.com/python-exercises/data-structures-and-algorithms/python-data-structure-exercise-4.php
+
+#%%%
+#Ex 11 : Write a Python program to get all values from an enum class.
+#Expected output: [93, 355, 213, 376, 244, 672].
+from enum import IntEnum
+class Color(IntEnum):
+   RED = 1
+   BLUE = 2
+[e.value for e in Color]
+#
+from enum import Enum
+class Letter(Enum):
+   A = 1
+   B = 2
+   C = 3
+print({i.name: i.value for i in Letter})
+# prints {'A': 1, 'B': 2, 'C': 3}
+
+from enum import IntEnum
+class Country(IntEnum):
+    Afghanistan = 93
+    Albania = 355
+    Algeria = 213
+    Andorra = 376
+    Angola = 244
+    Antarctica = 672
+print({i.name: i.value for i in Country})
+print({i.value for i in Country})
+
+#https://stackoverflow.com/questions/29503339/how-to-get-all-values-from-python-enum-class
+
+
+#%%
+#Ex12 : Write a Python program to get an array buffer information
+#Expected Output: Array buffer start address in memory and number of elements. (25855056, 2)
+from array import array
+a = array("I", (12,25))
+print("Array buffer start address in memory and number of elements." , a.buffer_info())
+#https://www.w3resource.com/python-exercises/data-structures-and-algorithms/python-data-structure-exercise-14.php

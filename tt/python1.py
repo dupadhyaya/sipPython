@@ -5,7 +5,7 @@
 #Write a program to get the Python version you are using
 import sys
 print(sys.version)
-
+#https://tecadmin.net/check-python-version-shell-script/
 #or in anacond command prompt
 #C:\>python
 

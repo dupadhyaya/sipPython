@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 #df = pd.read_csv('data/mtcars.csv')
+#pip install pydataset
 from pydataset import data
 iris = data('iris')
 df = iris
@@ -14,7 +15,8 @@ df.head()
 df.columns
 X = df.iloc[:, :-1].values
 y = df.iloc[:, 4].values
-X[0:2]; y[0:2]
+X[0:2]
+y[0:2]
 df.head(2)
 
 #Split Dataset : Train and Test (20%)

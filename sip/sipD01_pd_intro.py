@@ -27,11 +27,14 @@ df.shape
 #create Pandas DF
 
 string1 = "student"
-list1 = [1,2,3,4,5]
+string1
 for dhiraj in range(1, 21):    print(string1 + str(dhiraj))
 
-
-'student'.join(map(lambda x: x + str(list1), list2 ))
+#You can get this error if you have variable str and trying to call str() function.
+list1 = [1,2,3,4,5]
+list2=['Student']
+'student'.join(map(lambda x: x + str(list1), str(list1) ))
+'student'.join(lambda x: x + str(list1))
 #Groupy
 
 

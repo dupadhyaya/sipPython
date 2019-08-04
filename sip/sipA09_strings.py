@@ -32,3 +32,19 @@ nameval
 
 
 #https://learnbatta.com/blog/python-working-with-strings-38/
+
+
+#%%%
+import pandas as pd
+import numpy as np
+from string import letters, lowercase, uppercase
+
+lt = list(letters)
+lc = list(lowercase)
+uc = list(uppercase)
+import string
+string.ascii_lowercase
+list(string.ascii_lowercase)
+list(map(chr, range(97, 123))) 
+help(string)
+[chr(i) for i in range(ord('a'),ord('z')+1)]

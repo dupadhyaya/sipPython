@@ -29,3 +29,9 @@ gender.size()
 gender.count('M')
 from collections import Counter
 Counter(gender)
+
+
+#
+rollno = pd.Series(range(1,11))
+rollno
+name = pd.Series(["student" + str(i) for i in range(1,11)])
